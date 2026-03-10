@@ -17,8 +17,8 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
+      background: #f8f6f2;
+      color: #222;
       line-height: 1.6;
     }
 
@@ -27,28 +27,41 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      padding: 18px 30px;
+      background: rgba(248, 246, 242, 0.95);
+      border-bottom: 1px solid #e7e2d9;
+      padding: 16px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    nav .logo {
-      font-size: 20px;
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-left img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 18px;
       letter-spacing: 2px;
       font-weight: bold;
+      color: #3a3228;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 24px;
+      gap: 22px;
     }
 
     nav a {
-      color: #fff;
+      color: #3a3228;
       text-decoration: none;
       font-size: 14px;
       letter-spacing: 1px;
@@ -57,39 +70,49 @@
 
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+      background: linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.28)),
                   url('images/hero.jpg') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 120px 20px 60px;
     }
 
     .hero-content {
-      max-width: 800px;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 38px 32px;
+      border-radius: 16px;
+      max-width: 760px;
+    }
+
+    .hero-logo {
+      height: 90px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: 56px;
+      font-size: 52px;
       margin-bottom: 12px;
-      letter-spacing: 2px;
+      color: #2f271f;
     }
 
     .hero p {
-      font-size: 20px;
-      margin-bottom: 28px;
-      color: #e8e8e8;
+      font-size: 19px;
+      margin-bottom: 26px;
+      color: #5a5046;
     }
 
     .hero a {
       display: inline-block;
       padding: 14px 28px;
-      background: #fff;
-      color: #000;
+      background: #b89d7a;
+      color: white;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 6px;
     }
 
     section {
@@ -100,53 +123,73 @@
 
     .section-title {
       font-size: 34px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-align: center;
+      color: #2f271f;
     }
 
     .section-subtitle {
       text-align: center;
-      color: #cfcfcf;
-      margin-bottom: 40px;
+      color: #6b6158;
+      margin-bottom: 42px;
     }
 
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
       margin-top: 20px;
     }
 
     .service-box {
-      background: #181818;
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid #262626;
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid #e6dfd4;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+      text-align: center;
     }
 
     .service-box h3 {
       margin-bottom: 10px;
-      font-size: 20px;
+      font-size: 22px;
+      color: #3a3228;
+    }
+
+    .service-box p {
+      color: #6b6158;
+    }
+
+    .portfolio-category {
+      margin-bottom: 56px;
+    }
+
+    .portfolio-category h3 {
+      font-size: 26px;
+      margin-bottom: 18px;
+      color: #3a3228;
+      text-align: left;
     }
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
     }
 
     .portfolio-grid img {
       width: 100%;
-      height: 340px;
+      height: 320px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 12px;
       display: block;
-      transition: transform 0.35s ease, opacity 0.35s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
     }
 
     .portfolio-grid img:hover {
       transform: scale(1.02);
-      opacity: 0.92;
+      opacity: 0.95;
     }
 
     .about-wrap {
@@ -158,33 +201,36 @@
 
     .about-wrap img {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
       object-fit: cover;
       max-height: 520px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
     }
 
     .about-text p {
       margin-bottom: 16px;
-      color: #e5e5e5;
+      color: #5e554c;
+      font-size: 17px;
     }
 
     .contact-box {
       max-width: 760px;
       margin: 0 auto;
       text-align: center;
-      background: #181818;
-      border: 1px solid #262626;
-      border-radius: 12px;
-      padding: 36px 24px;
+      background: white;
+      border: 1px solid #e6dfd4;
+      border-radius: 14px;
+      padding: 38px 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
     }
 
     .contact-box p {
       margin-bottom: 16px;
-      color: #dddddd;
+      color: #5e554c;
     }
 
     .contact-links a {
-      color: #fff;
+      color: #8b6f4d;
       text-decoration: none;
       margin: 0 12px;
       font-weight: bold;
@@ -192,9 +238,10 @@
 
     footer {
       text-align: center;
-      padding: 26px 20px;
-      color: #bdbdbd;
-      border-top: 1px solid #222;
+      padding: 28px 20px;
+      color: #7a6f64;
+      border-top: 1px solid #e7e2d9;
+      background: #f4f0ea;
     }
 
     @media (max-width: 768px) {
@@ -213,7 +260,11 @@
       }
 
       .hero p {
-        font-size: 18px;
+        font-size: 17px;
+      }
+
+      .hero-logo {
+        height: 70px;
       }
 
       .about-wrap {
@@ -221,7 +272,7 @@
       }
 
       .portfolio-grid img {
-        height: 260px;
+        height: 250px;
       }
     }
   </style>
@@ -229,7 +280,10 @@
 <body>
 
   <nav>
-    <div class="logo">PHOTO BY PRADO</div>
+    <div class="nav-left">
+      <img src="images/logo.png" alt="Photo By Prado Logo">
+      <div class="logo-text">PHOTO BY PRADO</div>
+    </div>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
@@ -241,47 +295,62 @@
 
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Photography That Feels Personal</h1>
-      <p>Portraits, creative sessions, and professional imagery with a clean editorial style.</p>
+      <img class="hero-logo" src="images/logo.png" alt="Photo By Prado Logo">
+      <h1>Timeless Photography for Real Moments</h1>
+      <p>Portraits, family portraits, and event photography with a clean and elegant style.</p>
       <a href="#portfolio">View Portfolio</a>
     </div>
   </section>
 
   <section id="services">
     <h2 class="section-title">Services</h2>
-    <p class="section-subtitle">Professional photography for individuals, brands, and special moments.</p>
+    <p class="section-subtitle">Photography services focused on the moments that matter most.</p>
 
     <div class="services">
       <div class="service-box">
-        <h3>Portrait Sessions</h3>
-        <p>Modern portraits for personal branding, graduation, and creative work.</p>
+        <h3>Portraits</h3>
+        <p>Individual portrait sessions with a polished, natural, and professional look.</p>
       </div>
       <div class="service-box">
-        <h3>Creative Shoots</h3>
-        <p>Styled sessions with artistic direction and a polished visual look.</p>
+        <h3>Family Portraits</h3>
+        <p>Warm and genuine family photography that captures connection and personality.</p>
       </div>
       <div class="service-box">
         <h3>Events</h3>
-        <p>Coverage for private events, celebrations, and meaningful occasions.</p>
-      </div>
-      <div class="service-box">
-        <h3>Editorial Style</h3>
-        <p>Clean, elevated imagery with strong composition and visual impact.</p>
+        <p>Coverage for celebrations, special occasions, and memorable gatherings.</p>
       </div>
     </div>
   </section>
 
   <section id="portfolio">
     <h2 class="section-title">Portfolio</h2>
-    <p class="section-subtitle">Replace these images with your best work only.</p>
+    <p class="section-subtitle">Add your best images under each category.</p>
 
-    <div class="portfolio-grid">
-      <img src="images/photo1.jpg" alt="Portfolio photo 1">
-      <img src="images/photo2.jpg" alt="Portfolio photo 2">
-      <img src="images/photo3.jpg" alt="Portfolio photo 3">
-      <img src="images/photo4.jpg" alt="Portfolio photo 4">
-      <img src="images/photo5.jpg" alt="Portfolio photo 5">
-      <img src="images/photo6.jpg" alt="Portfolio photo 6">
+    <div class="portfolio-category">
+      <h3>Portraits</h3>
+      <div class="portfolio-grid">
+        <img src="images/portrait1.jpg" alt="Portrait photo 1">
+        <img src="images/portrait2.jpg" alt="Portrait photo 2">
+        <img src="images/portrait3.jpg" alt="Portrait photo 3">
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <h3>Family Portraits</h3>
+      <div class="portfolio-grid">
+        <img src="images/family1.jpg" alt="Family portrait 1">
+        <img src="images/family2.jpg" alt="Family portrait 2">
+        <img src="images/family3.jpg" alt="Family portrait 3">
+      </div>
+    </div>
+
+    <div class="portfolio-category">
+      <h3>Events</h3>
+      <div class="portfolio-grid">
+        <img src="images/event1.jpg" alt="Event photo 1">
+        <img src="images/event2.jpg" alt="Event photo 2">
+        <img src="images/event3.jpg" alt="Event photo 3">
+      </div>
     </div>
   </section>
 
@@ -290,9 +359,9 @@
     <div class="about-wrap">
       <img src="images/about.jpg" alt="Photographer portrait">
       <div class="about-text">
-        <p>I am the photographer behind Photo By Prado, focused on creating portraits and creative images that feel natural, refined, and visually strong.</p>
-        <p>My work is centered on clean composition, strong lighting, and helping clients feel comfortable in front of the camera.</p>
-        <p>This section should sound like you. Keep it short, direct, and professional.</p>
+        <p>I am the photographer behind Photo By Prado, focused on creating beautiful and natural images that feel personal and lasting.</p>
+        <p>My work centers on portraits, family portraits, and events, with an approach that is clean, elegant, and true to the moment.</p>
+        <p>Replace this section with your own voice and a short description of your style and experience.</p>
       </div>
     </div>
   </section>
@@ -300,11 +369,9 @@
   <section id="contact">
     <h2 class="section-title">Contact</h2>
     <div class="contact-box">
-      <p>Ready to book a session or ask about availability.</p>
-      <p>Replace the links below with your real contact details.</p>
+      <p>For bookings, availability, or session inquiries, reach out below.</p>
       <div class="contact-links">
         <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-        <a href="mailto:your@email.com">Email</a>
         <a href="https://wa.me/10000000000" target="_blank">WhatsApp</a>
       </div>
     </div>
