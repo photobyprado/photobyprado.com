@@ -276,7 +276,6 @@
       display: block;
     }
 
-    /* Main menu */
     .menu-main-wrap {
       width: 100%;
       max-width: 420px;
@@ -321,8 +320,10 @@
       color: var(--menu-red);
     }
 
-    /* Portfolio categories screen */
-    .portfolio-browser {
+    .portfolio-browser,
+    .gallery-view,
+    .about-screen,
+    .contact-screen {
       padding: 10px 0 30px;
     }
 
@@ -390,11 +391,6 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.18));
     }
 
-    /* Gallery screen */
-    .gallery-view {
-      padding: 10px 0 30px;
-    }
-
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -410,6 +406,9 @@
     .gallery-item {
       background: #111;
       overflow: hidden;
+      border: none;
+      padding: 0;
+      cursor: pointer;
     }
 
     .gallery-item img {
@@ -419,7 +418,137 @@
       display: block;
     }
 
-    /* Lightbox */
+    /* ABOUT */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .about-text-block {
+      max-width: 760px;
+    }
+
+    .about-heading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 5vw, 5.2rem);
+      line-height: 1.08;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .about-description {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      max-width: 760px;
+    }
+
+    .about-photo-frame,
+    .contact-photo-frame {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      margin-left: auto;
+    }
+
+    .about-photo-accent,
+    .contact-photo-accent {
+      position: absolute;
+      left: -26px;
+      bottom: -26px;
+      width: 100%;
+      height: 100%;
+      background: #ff3347;
+      z-index: 1;
+    }
+
+    .about-photo,
+    .contact-photo {
+      position: relative;
+      z-index: 2;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .about-photo img,
+    .contact-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .contact-text-block {
+      max-width: 760px;
+    }
+
+    .contact-heading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.08;
+      text-transform: uppercase;
+      margin-bottom: 34px;
+    }
+
+    .contact-form {
+      max-width: 760px;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: #f3f3f3;
+      color: #111;
+      font-size: 1rem;
+      padding: 18px 16px;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .contact-form textarea {
+      min-height: 200px;
+      resize: vertical;
+      margin-bottom: 22px;
+    }
+
+    .contact-form button[type="submit"] {
+      border: none;
+      background: #22c55e;
+      color: white;
+      padding: 18px 32px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.25s ease;
+    }
+
+    .contact-form button[type="submit"]:hover {
+      opacity: 0.92;
+    }
+
+    /* LIGHTBOX */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -454,10 +583,6 @@
       cursor: pointer;
     }
 
-    .page-sections {
-      display: none;
-    }
-
     @media (max-width: 900px) {
       .columns {
         grid-template-columns: 1fr 1fr;
@@ -476,8 +601,17 @@
       }
 
       .category-grid,
-      .gallery-grid {
+      .gallery-grid,
+      .about-layout,
+      .contact-layout,
+      .contact-row {
         grid-template-columns: 1fr;
+      }
+
+      .about-photo-frame,
+      .contact-photo-frame {
+        max-width: 520px;
+        margin-left: 0;
       }
     }
 
@@ -523,6 +657,22 @@
       .menu-inner {
         padding: 22px 18px 28px;
       }
+
+      .about-heading,
+      .contact-heading {
+        font-size: 2.2rem;
+      }
+
+      .about-description {
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .about-photo-accent,
+      .contact-photo-accent {
+        left: -14px;
+        bottom: -14px;
+      }
     }
   </style>
 </head>
@@ -530,7 +680,7 @@
 
   <div class="site-wrap">
     <div class="top-bar">
-      <a class="icon-link" href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+      <a class="icon-link" href="https://www.instagram.com/photobyprado/" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3Zm0 2.2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.05-3.95a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
         </svg>
@@ -602,7 +752,7 @@
 
       <div class="menu-top">
         <div class="menu-social">
-          <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+          <a href="https://www.instagram.com/photobyprado/" target="_blank" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M7 2h10a5 5 0 0 1 5 5v10A5 5 0 0 1 17 22H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3Zm0 2.2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.05-3.95a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
             </svg>
@@ -623,8 +773,8 @@
             <li>
               <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
             </li>
-            <li><a class="menu-link" href="#about">About</a></li>
-            <li><a class="menu-link" href="#contact">Contact</a></li>
+            <li><button type="button" class="menu-link" id="aboutToggle">About</button></li>
+            <li><button type="button" class="menu-link" id="contactToggle">Contact</button></li>
           </ul>
         </div>
       </div>
@@ -726,6 +876,88 @@
         </div>
       </div>
 
+      <!-- ABOUT SCREEN -->
+      <div class="menu-screen" id="screenAbout">
+        <div class="about-screen">
+          <div class="back-row">
+            <button type="button" class="back-link" id="backFromAbout">← Back to Menu</button>
+          </div>
+
+          <div class="about-layout">
+            <div class="about-text-block">
+              <h2 class="about-heading">
+                Photographer<br>
+                and Director
+              </h2>
+
+              <div class="about-description">
+                <p>
+                  Specializing in portrait and event photography, Daniel Prado is a reliable photographer based in Long Island and New York City. He has worked with families capturing both candid and posed moments, individual portraits, and a variety of events.
+                </p>
+
+                <br>
+
+                <p>
+                  Daniel is known for a clean, bold style that focuses on natural expression and thoughtful composition. Driven by a passion for visual storytelling and creative collaboration, he uses his skills and production resources to create images that feel authentic, polished, and meaningful for every client.
+                </p>
+              </div>
+            </div>
+
+            <div class="about-photo-frame">
+              <div class="about-photo-accent"></div>
+              <div class="about-photo">
+                <img src="images/about-profile.jpg" alt="Daniel Prado portrait">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT SCREEN -->
+      <div class="menu-screen" id="screenContact">
+        <div class="contact-screen">
+          <div class="back-row">
+            <button type="button" class="back-link" id="backFromContact">← Back to Menu</button>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-text-block">
+              <h2 class="contact-heading">
+                Contact<br>
+                Daniel Prado
+              </h2>
+
+              <form class="contact-form">
+                <div class="contact-row">
+                  <input type="text" name="name" placeholder="Name" required>
+                  <input type="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="contact-row">
+                  <select name="inquiryType" required>
+                    <option value="" selected disabled>Inquiry type</option>
+                    <option value="family">Family</option>
+                    <option value="events">Events</option>
+                    <option value="portraits">Portraits</option>
+                  </select>
+                </div>
+
+                <textarea name="message" placeholder="Your message here" required></textarea>
+
+                <button type="submit">Send Message</button>
+              </form>
+            </div>
+
+            <div class="contact-photo-frame">
+              <div class="contact-photo-accent"></div>
+              <div class="contact-photo">
+                <img src="images/contact-profile.jpg" alt="Daniel Prado portrait">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -744,9 +976,17 @@
     const galleryPortraits = document.getElementById("galleryPortraits");
     const galleryFamily = document.getElementById("galleryFamily");
     const galleryEvents = document.getElementById("galleryEvents");
+    const screenAbout = document.getElementById("screenAbout");
+    const screenContact = document.getElementById("screenContact");
 
     const portfolioToggle = document.getElementById("portfolioToggle");
+    const aboutToggle = document.getElementById("aboutToggle");
+    const contactToggle = document.getElementById("contactToggle");
+
     const backToMain = document.getElementById("backToMain");
+    const backFromAbout = document.getElementById("backFromAbout");
+    const backFromContact = document.getElementById("backFromContact");
+
     const openGalleryButtons = document.querySelectorAll(".open-gallery");
     const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
 
@@ -761,6 +1001,8 @@
       galleryPortraits.classList.remove("active");
       galleryFamily.classList.remove("active");
       galleryEvents.classList.remove("active");
+      screenAbout.classList.remove("active");
+      screenContact.classList.remove("active");
     }
 
     function showMainMenu() {
@@ -785,6 +1027,16 @@
       }
     }
 
+    function showAboutScreen() {
+      hideAllScreens();
+      screenAbout.classList.add("active");
+    }
+
+    function showContactScreen() {
+      hideAllScreens();
+      screenContact.classList.add("active");
+    }
+
     menuToggle.addEventListener("click", () => {
       menuOverlay.classList.add("active");
       showMainMenu();
@@ -798,7 +1050,23 @@
       showPortfolioCategories();
     });
 
+    aboutToggle.addEventListener("click", () => {
+      showAboutScreen();
+    });
+
+    contactToggle.addEventListener("click", () => {
+      showContactScreen();
+    });
+
     backToMain.addEventListener("click", () => {
+      showMainMenu();
+    });
+
+    backFromAbout.addEventListener("click", () => {
+      showMainMenu();
+    });
+
+    backFromContact.addEventListener("click", () => {
       showMainMenu();
     });
 
