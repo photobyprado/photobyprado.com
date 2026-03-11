@@ -10,7 +10,7 @@
       --white: #ffffff;
       --muted: rgba(255,255,255,0.75);
       --accent: #d8b48a;
-      --overlay: rgba(0,0,0,0.96);
+      --overlay: rgba(0,0,0,0.97);
       --menu-red: #ff3347;
     }
 
@@ -147,12 +147,12 @@
     }
 
     @keyframes scrollUp {
-      0%   { transform: translateY(0); }
+      0% { transform: translateY(0); }
       100% { transform: translateY(-50%); }
     }
 
     @keyframes scrollDown {
-      0%   { transform: translateY(-50%); }
+      0% { transform: translateY(-50%); }
       100% { transform: translateY(0); }
     }
 
@@ -204,8 +204,7 @@
       position: absolute;
       inset: 0;
       z-index: 10;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.28), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.18) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.28), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.18) 100%);
       pointer-events: none;
     }
 
@@ -232,6 +231,7 @@
       padding: 28px 28px 40px;
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
     }
 
     .menu-top {
@@ -239,7 +239,8 @@
       justify-content: flex-end;
       align-items: center;
       gap: 18px;
-      margin-bottom: 70px;
+      margin-bottom: 54px;
+      flex-shrink: 0;
     }
 
     .menu-social {
@@ -264,22 +265,35 @@
       stroke: white;
     }
 
-    .menu-content {
+    .menu-screen {
+      display: none;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .menu-screen.active {
+      display: block;
+    }
+
+    /* Main menu */
+    .menu-main-wrap {
       width: 100%;
       max-width: 420px;
       margin-left: 12vw;
-      margin-top: 6vh;
+      margin-top: 4vh;
     }
 
     .menu-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px;
     }
 
     .menu-link,
-    .submenu-toggle {
+    .submenu-toggle,
+    .back-link {
       background: transparent;
       border: none;
       color: white;
@@ -298,37 +312,146 @@
     }
 
     .menu-link:hover,
-    .submenu-toggle:hover {
+    .submenu-toggle:hover,
+    .back-link:hover {
       color: var(--menu-red);
-    }
-
-    .submenu {
-      list-style: none;
-      margin-top: 14px;
-      margin-left: 18px;
-      display: none;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .submenu.active {
-      display: flex;
-    }
-
-    .submenu a {
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.88);
-    }
-
-    .submenu a:hover {
-      color: var(--accent);
     }
 
     .portfolio-open {
       color: var(--menu-red);
+    }
+
+    /* Portfolio categories screen */
+    .portfolio-browser {
+      padding: 10px 0 30px;
+    }
+
+    .back-row {
+      margin-bottom: 26px;
+    }
+
+    .back-link {
+      font-size: 1.2rem;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 500;
+      color: var(--menu-red);
+    }
+
+    .screen-title {
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #111;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+
+    .category-card img {
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.03);
+      opacity: 0.88;
+    }
+
+    .category-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.5rem, 2.3vw, 2.4rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.96);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.18));
+    }
+
+    /* Gallery screen */
+    .gallery-view {
+      padding: 10px 0 30px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .gallery-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .gallery-item {
+      background: #111;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      padding: 24px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 2.2rem;
+      cursor: pointer;
     }
 
     .page-sections {
@@ -348,9 +471,13 @@
         margin-left: 0;
       }
 
-      .menu-content {
+      .menu-main-wrap {
         margin-left: 6vw;
-        margin-top: 4vh;
+      }
+
+      .category-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -378,7 +505,7 @@
         height: 28px;
       }
 
-      .menu-content {
+      .menu-main-wrap {
         margin-left: 0;
         margin-top: 2vh;
         max-width: 100%;
@@ -389,8 +516,12 @@
         font-size: 1.9rem;
       }
 
-      .submenu a {
+      .back-link {
         font-size: 1rem;
+      }
+
+      .menu-inner {
+        padding: 22px 18px 28px;
       }
     }
   </style>
@@ -398,7 +529,6 @@
 <body>
 
   <div class="site-wrap">
-
     <div class="top-bar">
       <a class="icon-link" href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -415,9 +545,8 @@
 
     <div class="hero-gallery">
       <div class="columns">
-
         <div class="column first-column">
-          <div class="track scroll-up" id="track1">
+          <div class="track scroll-up">
             <img src="images/hero1.jpg" alt="Photography image 1">
             <img src="images/hero2.jpg" alt="Photography image 2">
             <img src="images/hero3.jpg" alt="Photography image 3">
@@ -430,7 +559,7 @@
         </div>
 
         <div class="column second-column">
-          <div class="track small scroll-down" id="track2">
+          <div class="track small scroll-down">
             <img src="images/hero5.jpg" alt="Photography image 5">
             <img src="images/hero6.jpg" alt="Photography image 6">
             <img src="images/hero7.jpg" alt="Photography image 7">
@@ -443,7 +572,7 @@
         </div>
 
         <div class="column third-column">
-          <div class="track small scroll-up-slow" id="track3">
+          <div class="track small scroll-up-slow">
             <img src="images/hero9.jpg" alt="Photography image 9">
             <img src="images/hero10.jpg" alt="Photography image 10">
             <img src="images/hero11.jpg" alt="Photography image 11">
@@ -454,7 +583,6 @@
             <img src="images/hero12.jpg" alt="">
           </div>
         </div>
-
       </div>
 
       <div class="hero-shade"></div>
@@ -488,58 +616,223 @@
         </button>
       </div>
 
-      <div class="menu-content">
-        <ul class="menu-list">
-          <li>
-            <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
-            <ul class="submenu" id="portfolioSubmenu">
-              <li><a href="#portraits">Portraits</a></li>
-              <li><a href="#family">Family Portraits</a></li>
-              <li><a href="#events">Events</a></li>
-            </ul>
-          </li>
+      <!-- MAIN MENU -->
+      <div class="menu-screen active" id="screenMain">
+        <div class="menu-main-wrap">
+          <ul class="menu-list">
+            <li>
+              <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
+            </li>
+            <li><a class="menu-link" href="#about">About</a></li>
+            <li><a class="menu-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
 
-          <li><a class="menu-link" href="#about">About</a></li>
-          <li><a class="menu-link" href="#contact">Contact</a></li>
-        </ul>
+      <!-- PORTFOLIO CATEGORY SCREEN -->
+      <div class="menu-screen" id="screenPortfolioCategories">
+        <div class="portfolio-browser">
+          <div class="back-row">
+            <button type="button" class="back-link" id="backToMain">← Back to Menu</button>
+          </div>
+
+          <h2 class="screen-title">Portfolios</h2>
+
+          <div class="category-grid">
+            <button type="button" class="category-card open-gallery" data-gallery="portraits">
+              <img src="images/portrait-cover.jpg" alt="Portraits">
+              <div class="category-label">Portraits</div>
+            </button>
+
+            <button type="button" class="category-card open-gallery" data-gallery="family">
+              <img src="images/family-cover.jpg" alt="Family Portraits">
+              <div class="category-label">Family Portraits</div>
+            </button>
+
+            <button type="button" class="category-card open-gallery" data-gallery="events">
+              <img src="images/event-cover.jpg" alt="Events">
+              <div class="category-label">Events</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PORTRAITS GALLERY -->
+      <div class="menu-screen" id="galleryPortraits">
+        <div class="gallery-view">
+          <div class="back-row">
+            <button type="button" class="back-link back-to-portfolios">← Back to Portfolios</button>
+          </div>
+
+          <h2 class="screen-title">Portraits</h2>
+
+          <div class="gallery-grid">
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/portrait1.jpg"><img src="images/portrait1.jpg" alt="Portrait 1"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/portrait2.jpg"><img src="images/portrait2.jpg" alt="Portrait 2"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/portrait3.jpg"><img src="images/portrait3.jpg" alt="Portrait 3"></button>
+            </div>
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/portrait4.jpg"><img src="images/portrait4.jpg" alt="Portrait 4"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/portrait5.jpg"><img src="images/portrait5.jpg" alt="Portrait 5"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAMILY GALLERY -->
+      <div class="menu-screen" id="galleryFamily">
+        <div class="gallery-view">
+          <div class="back-row">
+            <button type="button" class="back-link back-to-portfolios">← Back to Portfolios</button>
+          </div>
+
+          <h2 class="screen-title">Family Portraits</h2>
+
+          <div class="gallery-grid">
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/family1.jpg"><img src="images/family1.jpg" alt="Family 1"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/family2.jpg"><img src="images/family2.jpg" alt="Family 2"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/family3.jpg"><img src="images/family3.jpg" alt="Family 3"></button>
+            </div>
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/family4.jpg"><img src="images/family4.jpg" alt="Family 4"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/family5.jpg"><img src="images/family5.jpg" alt="Family 5"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS GALLERY -->
+      <div class="menu-screen" id="galleryEvents">
+        <div class="gallery-view">
+          <div class="back-row">
+            <button type="button" class="back-link back-to-portfolios">← Back to Portfolios</button>
+          </div>
+
+          <h2 class="screen-title">Events</h2>
+
+          <div class="gallery-grid">
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/event1.jpg"><img src="images/event1.jpg" alt="Event 1"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/event2.jpg"><img src="images/event2.jpg" alt="Event 2"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/event3.jpg"><img src="images/event3.jpg" alt="Event 3"></button>
+            </div>
+            <div class="gallery-stack">
+              <button class="gallery-item lightbox-trigger" data-image="images/event4.jpg"><img src="images/event4.jpg" alt="Event 4"></button>
+              <button class="gallery-item lightbox-trigger" data-image="images/event5.jpg"><img src="images/event5.jpg" alt="Event 5"></button>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <div class="page-sections">
-    <section id="portraits"></section>
-    <section id="family"></section>
-    <section id="events"></section>
-    <section id="about"></section>
-    <section id="contact"></section>
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+    <img id="lightboxImage" src="" alt="Expanded gallery image">
   </div>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
     const menuClose = document.getElementById("menuClose");
     const menuOverlay = document.getElementById("menuOverlay");
+
+    const screenMain = document.getElementById("screenMain");
+    const screenPortfolioCategories = document.getElementById("screenPortfolioCategories");
+    const galleryPortraits = document.getElementById("galleryPortraits");
+    const galleryFamily = document.getElementById("galleryFamily");
+    const galleryEvents = document.getElementById("galleryEvents");
+
     const portfolioToggle = document.getElementById("portfolioToggle");
-    const portfolioSubmenu = document.getElementById("portfolioSubmenu");
-    const menuLinks = document.querySelectorAll(".menu-link, .submenu a");
+    const backToMain = document.getElementById("backToMain");
+    const openGalleryButtons = document.querySelectorAll(".open-gallery");
+    const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
+
+    function hideAllScreens() {
+      screenMain.classList.remove("active");
+      screenPortfolioCategories.classList.remove("active");
+      galleryPortraits.classList.remove("active");
+      galleryFamily.classList.remove("active");
+      galleryEvents.classList.remove("active");
+    }
+
+    function showMainMenu() {
+      hideAllScreens();
+      screenMain.classList.add("active");
+    }
+
+    function showPortfolioCategories() {
+      hideAllScreens();
+      screenPortfolioCategories.classList.add("active");
+    }
+
+    function showGallery(name) {
+      hideAllScreens();
+
+      if (name === "portraits") {
+        galleryPortraits.classList.add("active");
+      } else if (name === "family") {
+        galleryFamily.classList.add("active");
+      } else if (name === "events") {
+        galleryEvents.classList.add("active");
+      }
+    }
 
     menuToggle.addEventListener("click", () => {
       menuOverlay.classList.add("active");
+      showMainMenu();
     });
 
     menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("active");
     });
 
-    portfolioToggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      portfolioSubmenu.classList.toggle("active");
+    portfolioToggle.addEventListener("click", () => {
+      showPortfolioCategories();
     });
 
-    menuLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        menuOverlay.classList.remove("active");
+    backToMain.addEventListener("click", () => {
+      showMainMenu();
+    });
+
+    openGalleryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const galleryName = button.getAttribute("data-gallery");
+        showGallery(galleryName);
       });
+    });
+
+    backToPortfolioButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        showPortfolioCategories();
+      });
+    });
+
+    lightboxTriggers.forEach(button => {
+      button.addEventListener("click", () => {
+        const imageSrc = button.getAttribute("data-image");
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add("active");
+      });
+    });
+
+    lightboxClose.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+      lightboxImage.src = "";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
+      }
     });
   </script>
 
