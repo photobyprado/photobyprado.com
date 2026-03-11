@@ -6,743 +6,538 @@
   <title>Photo By Prado</title>
   <style>
     :root {
-      --bg: #f7f3ee;
-      --bg-soft: #fcfaf7;
-      --text: #1f1a17;
-      --muted: #6b625b;
-      --accent: #b78f6a;
-      --line: #e7ddd2;
-      --card: #ffffff;
-      --shadow: 0 12px 35px rgba(32, 24, 18, 0.08);
-      --max: 1280px;
+      --bg: #000000;
+      --white: #ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --accent: #d8b48a;
+      --overlay: rgba(0,0,0,0.96);
+      --menu-red: #ff3347;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       font-family: "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      color: var(--white);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     img {
       display: block;
       width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(247, 243, 238, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(231, 221, 210, 0.9);
-    }
-
-    .nav-inner {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-shrink: 0;
-    }
-
-    .brand img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-
-    .brand-text {
-      font-size: 15px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .menu a {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text);
-    }
-
-    .menu a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding-top: 78px;
+    .site-wrap {
       position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Top right icons */
+    .top-bar {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      z-index: 50;
       display: flex;
       align-items: center;
-      background:
-        linear-gradient(rgba(247, 243, 238, 0.15), rgba(247, 243, 238, 0.3)),
-        url("images/hero.jpg") center/cover no-repeat;
+      gap: 18px;
     }
 
-    .hero-overlay {
-      width: 100%;
-      padding: 90px 0 70px;
-    }
-
-    .hero-card {
-      max-width: 720px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: var(--shadow);
-      border-radius: 22px;
-      padding: 38px;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 0.95;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: #4f4740;
-      max-width: 580px;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 700;
+    .icon-link,
+    .menu-toggle,
+    .menu-close {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.92;
       transition: 0.25s ease;
     }
 
-    .btn-primary {
-      background: var(--text);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent);
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--text);
-      color: var(--text);
-      background: transparent;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    section {
-      padding: 95px 0;
-    }
-
-    .section-head {
-      margin-bottom: 34px;
-    }
-
-    .section-kicker {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1;
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      max-width: 760px;
-      font-size: 1rem;
-    }
-
-    .portfolio-featured {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .portfolio-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .portfolio-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      min-height: 520px;
-      background: var(--card);
-      box-shadow: var(--shadow);
-    }
-
-    .portfolio-card.small {
-      min-height: 380px;
-    }
-
-    .portfolio-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.45s ease;
-    }
-
-    .portfolio-card:hover img {
+    .icon-link:hover,
+    .menu-toggle:hover,
+    .menu-close:hover {
+      opacity: 1;
       transform: scale(1.04);
     }
 
-    .portfolio-label {
-      position: absolute;
-      left: 24px;
-      bottom: 24px;
-      background: rgba(255, 255, 255, 0.86);
-      backdrop-filter: blur(8px);
-      padding: 16px 18px;
-      border-radius: 18px;
-      min-width: 210px;
+    .icon-link svg,
+    .menu-toggle svg,
+    .menu-close svg {
+      width: 34px;
+      height: 34px;
+      fill: white;
+      stroke: white;
     }
 
-    .portfolio-label span {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .portfolio-label strong {
-      display: block;
-      font-size: 1.55rem;
-      line-height: 1;
-      font-weight: 600;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service-card {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .service-number {
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .service-card p {
-      color: var(--muted);
-    }
-
-    .about-wrap {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .about-image {
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      min-height: 620px;
-      background: #ddd;
-    }
-
-    .about-image img {
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .about-content {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-content p {
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-size: 1rem;
-    }
-
-    .about-content p:last-child {
-      margin-bottom: 0;
-    }
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .contact-card,
-    .contact-panel {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-card h3,
-    .contact-panel h3 {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    .contact-card p,
-    .contact-panel p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .contact-links {
-      display: grid;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .contact-link {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 16px 18px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: white;
-      transition: 0.25s ease;
-    }
-
-    .contact-link:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .contact-link small {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-size: 11px;
-      margin-bottom: 4px;
-    }
-
-    .contact-link strong {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .inquiry-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    .inquiry-list li {
-      padding-left: 18px;
+    /* Full screen gallery */
+    .hero-gallery {
       position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .inquiry-list li::before {
-      content: "•";
+    .columns {
       position: absolute;
-      left: 0;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 8px;
+      padding: 8px;
+      background: #000;
+    }
+
+    .column {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .track {
+      position: absolute;
       top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      will-change: transform;
+    }
+
+    .track img {
+      height: 48vh;
+      min-height: 320px;
+      border-radius: 0;
+    }
+
+    .track.small img {
+      height: 32vh;
+      min-height: 220px;
+    }
+
+    .scroll-up {
+      animation: scrollUp 28s linear infinite;
+    }
+
+    .scroll-down {
+      animation: scrollDown 30s linear infinite;
+    }
+
+    .scroll-up-slow {
+      animation: scrollUp 36s linear infinite;
+    }
+
+    @keyframes scrollUp {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    @keyframes scrollDown {
+      0%   { transform: translateY(-50%); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Center name */
+    .center-brand {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      padding: 20px;
+    }
+
+    .brand-text {
+      text-align: center;
+      color: rgba(255,255,255,0.95);
+      mix-blend-mode: screen;
+    }
+
+    .brand-text .line1,
+    .brand-text .line2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.35);
+    }
+
+    .brand-text .line1 {
+      font-size: clamp(3.4rem, 11vw, 9rem);
+    }
+
+    .brand-text .line2 {
+      font-size: clamp(3.4rem, 11vw, 9rem);
+      margin-left: 12vw;
+    }
+
+    .brand-sub {
+      margin-top: 18px;
+      font-size: 0.92rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+    }
+
+    /* Dark gradient for readability */
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.28), rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.18) 100%);
+      pointer-events: none;
+    }
+
+    /* Menu overlay */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      color: white;
+      z-index: 100;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .menu-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 28px 28px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .menu-social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .menu-social a {
+      display: inline-flex;
+      opacity: 0.85;
+    }
+
+    .menu-social a:hover {
+      opacity: 1;
+    }
+
+    .menu-social svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+      stroke: white;
+    }
+
+    .menu-content {
+      width: 100%;
+      max-width: 420px;
+      margin-left: 12vw;
+      margin-top: 6vh;
+    }
+
+    .menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .menu-link,
+    .submenu-toggle {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-align: left;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-link:hover,
+    .submenu-toggle:hover {
+      color: var(--menu-red);
+    }
+
+    .submenu {
+      list-style: none;
+      margin-top: 14px;
+      margin-left: 18px;
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .submenu.active {
+      display: flex;
+    }
+
+    .submenu a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .submenu a:hover {
       color: var(--accent);
     }
 
-    footer {
-      padding: 28px 0 40px;
-      border-top: 1px solid var(--line);
-      background: #f3eee8;
+    .portfolio-open {
+      color: var(--menu-red);
     }
 
-    .footer-inner {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.92rem;
+    /* Hidden content sections */
+    .page-sections {
+      display: none;
     }
 
-    @media (max-width: 1080px) {
-      .portfolio-featured,
-      .portfolio-grid-3,
-      .services-grid,
-      .about-wrap,
-      .contact-wrap {
+    /* Mobile */
+    @media (max-width: 900px) {
+      .columns {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .columns .third-column {
+        display: none;
+      }
+
+      .brand-text .line2 {
+        margin-left: 0;
+      }
+
+      .menu-content {
+        margin-left: 6vw;
+        margin-top: 4vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .columns {
         grid-template-columns: 1fr;
       }
 
-      .portfolio-card,
-      .portfolio-card.small,
-      .about-image {
-        min-height: 420px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav-inner {
-        padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
+      .columns .second-column,
+      .columns .third-column {
+        display: none;
       }
 
-      .menu {
-        gap: 14px 18px;
+      .top-bar {
+        top: 18px;
+        right: 18px;
+        gap: 14px;
       }
 
-      .hero-card {
-        padding: 28px 22px;
+      .icon-link svg,
+      .menu-toggle svg,
+      .menu-close svg,
+      .menu-social svg {
+        width: 28px;
+        height: 28px;
       }
 
-      .section-title {
-        line-height: 1.05;
+      .menu-content {
+        margin-left: 0;
+        margin-top: 2vh;
+        max-width: 100%;
       }
 
-      .portfolio-label {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
-        min-width: auto;
+      .menu-link,
+      .submenu-toggle {
+        font-size: 1.9rem;
       }
 
-      .service-card,
-      .about-content,
-      .contact-card,
-      .contact-panel {
-        padding: 24px;
+      .submenu a {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="#home" class="brand">
-        <img src="images/logo.png" alt="Photo By Prado logo">
-        <div class="brand-text">Photo By Prado</div>
+  <div class="site-wrap">
+
+    <div class="top-bar">
+      <a class="icon-link" href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3Zm0 2.2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.05-3.95a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
+        </svg>
       </a>
 
-      <ul class="menu">
-        <li><a href="#portfolio">Portfolios</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
-  </nav>
 
-  <header class="hero" id="home">
-    <div class="hero-overlay">
-      <div class="container">
-        <div class="hero-card">
-          <div class="eyebrow">Portraits • Family Portraits • Events</div>
-          <h1>Elegant photography with a clean, modern, editorial feel.</h1>
-          <p>
-            Photo By Prado creates polished portraits, genuine family imagery, and event coverage
-            that feels timeless, warm, and professionally finished.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#portfolio">View Portfolios</a>
-            <a class="btn btn-secondary" href="#contact">Book an Inquiry</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+    <div class="hero-gallery">
+      <div class="columns">
 
-  <section id="portfolio">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Selected Work</div>
-        <h2 class="section-title">Portfolios</h2>
-        <p class="section-copy">
-          Replace these images with your strongest work only. Keep each category visually consistent.
-          Add more files later by duplicating the image blocks below.
-        </p>
-      </div>
-
-      <div class="portfolio-featured">
-        <a href="#contact" class="portfolio-card">
-          <img src="images/portrait1.jpg" alt="Portrait portfolio image">
-          <div class="portfolio-label">
-            <span>01</span>
-            <strong>Portraits</strong>
-          </div>
-        </a>
-
-        <a href="#contact" class="portfolio-card">
-          <img src="images/family1.jpg" alt="Family portrait portfolio image">
-          <div class="portfolio-label">
-            <span>02</span>
-            <strong>Family Portraits</strong>
-          </div>
-        </a>
-      </div>
-
-      <div class="portfolio-grid-3">
-        <a href="#contact" class="portfolio-card small">
-          <img src="images/event1.jpg" alt="Event portfolio image">
-          <div class="portfolio-label">
-            <span>03</span>
-            <strong>Events</strong>
-          </div>
-        </a>
-
-        <a href="#contact" class="portfolio-card small">
-          <img src="images/portrait2.jpg" alt="Additional portrait image">
-          <div class="portfolio-label">
-            <span>Featured</span>
-            <strong>Editorial Style</strong>
-          </div>
-        </a>
-
-        <a href="#contact" class="portfolio-card small">
-          <img src="images/family2.jpg" alt="Additional family portrait image">
-          <div class="portfolio-label">
-            <span>Featured</span>
-            <strong>Natural Moments</strong>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">What I Offer</div>
-        <h2 class="section-title">Services</h2>
-        <p class="section-copy">
-          Three focused services, each built around clean composition, strong direction, and images
-          that feel elevated without looking forced.
-        </p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-number">01</div>
-          <h3>Portraits</h3>
-          <p>
-            Individual sessions for branding, graduation, lifestyle, or creative portrait work with a refined, polished result.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-number">02</div>
-          <h3>Family Portraits</h3>
-          <p>
-            Warm, connected family sessions designed to capture genuine expressions with an elegant and timeless finish.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-number">03</div>
-          <h3>Events</h3>
-          <p>
-            Coverage for celebrations and special occasions with attention to real moments, atmosphere, and key details.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Behind the Brand</div>
-        <h2 class="section-title">About</h2>
-      </div>
-
-      <div class="about-wrap">
-        <div class="about-image">
-          <img src="images/about.jpg" alt="Photographer portrait">
-        </div>
-
-        <div class="about-content">
-          <p>
-            I’m the photographer behind Photo By Prado. My work is centered on creating imagery that feels clean, intentional, and naturally expressive.
-          </p>
-          <p>
-            Whether I’m photographing portraits, families, or events, the goal is the same: create photographs that feel elevated, personal, and lasting.
-          </p>
-          <p>
-            Replace this copy with your own story, location, and approach. Keep it short. A strong About section should sound personal but still professional.
-          </p>
-          <p>
-            You can also add experience, booking process details, or the areas you serve.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Get in Touch</div>
-        <h2 class="section-title">Contact</h2>
-        <p class="section-copy">
-          Make booking simple. Keep the contact section clean and direct.
-        </p>
-      </div>
-
-      <div class="contact-wrap">
-        <div class="contact-card">
-          <h3>Let’s plan your session.</h3>
-          <p>
-            Use your real links below. Replace the placeholders with your actual Instagram, WhatsApp, and email details.
-          </p>
-
-          <div class="contact-links">
-            <a class="contact-link" href="https://www.instagram.com/" target="_blank">
-              <div>
-                <small>Instagram</small>
-                <strong>@photobyprado</strong>
-              </div>
-              <div>↗</div>
-            </a>
-
-            <a class="contact-link" href="https://wa.me/10000000000" target="_blank">
-              <div>
-                <small>WhatsApp</small>
-                <strong>Message Directly</strong>
-              </div>
-              <div>↗</div>
-            </a>
-
-            <a class="contact-link" href="mailto:your@email.com">
-              <div>
-                <small>Email</small>
-                <strong>your@email.com</strong>
-              </div>
-              <div>↗</div>
-            </a>
+        <div class="column first-column">
+          <div class="track scroll-up" id="track1">
+            <img src="images/hero1.jpg" alt="Photography image 1">
+            <img src="images/hero2.jpg" alt="Photography image 2">
+            <img src="images/hero3.jpg" alt="Photography image 3">
+            <img src="images/hero4.jpg" alt="Photography image 4">
+            <img src="images/hero1.jpg" alt="">
+            <img src="images/hero2.jpg" alt="">
+            <img src="images/hero3.jpg" alt="">
+            <img src="images/hero4.jpg" alt="">
           </div>
         </div>
 
-        <div class="contact-panel">
-          <h3>Inquiry details</h3>
-          <p>
-            Add the details people usually ask for before booking.
-          </p>
+        <div class="column second-column">
+          <div class="track small scroll-down" id="track2">
+            <img src="images/hero5.jpg" alt="Photography image 5">
+            <img src="images/hero6.jpg" alt="Photography image 6">
+            <img src="images/hero7.jpg" alt="Photography image 7">
+            <img src="images/hero8.jpg" alt="Photography image 8">
+            <img src="images/hero5.jpg" alt="">
+            <img src="images/hero6.jpg" alt="">
+            <img src="images/hero7.jpg" alt="">
+            <img src="images/hero8.jpg" alt="">
+          </div>
+        </div>
 
-          <ul class="inquiry-list">
-            <li>Type of session or event</li>
-            <li>Preferred date</li>
-            <li>Location</li>
-            <li>Number of people</li>
-            <li>Any style or inspiration notes</li>
-          </ul>
+        <div class="column third-column">
+          <div class="track small scroll-up-slow" id="track3">
+            <img src="images/hero9.jpg" alt="Photography image 9">
+            <img src="images/hero10.jpg" alt="Photography image 10">
+            <img src="images/hero11.jpg" alt="Photography image 11">
+            <img src="images/hero12.jpg" alt="Photography image 12">
+            <img src="images/hero9.jpg" alt="">
+            <img src="images/hero10.jpg" alt="">
+            <img src="images/hero11.jpg" alt="">
+            <img src="images/hero12.jpg" alt="">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-shade"></div>
+
+      <div class="center-brand">
+        <div class="brand-text">
+          <div class="line1">Photo By</div>
+          <div class="line2">Prado</div>
+          <div class="brand-sub">Portraits • Family Portraits • Events</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <div class="footer-inner">
-      <div>© 2026 Photo By Prado</div>
-      <div>Portraits • Family Portraits • Events</div>
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-inner">
+
+      <div class="menu-top">
+        <div class="menu-social">
+          <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm5 3.1A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3Zm0 2.2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.05-3.95a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/>
+            </svg>
+          </a>
+        </div>
+
+        <button class="menu-close" id="menuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="menu-content">
+        <ul class="menu-list">
+          <li>
+            <button class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
+            <ul class="submenu active" id="portfolioSubmenu">
+              <li><a href="#portraits">Portraits</a></li>
+              <li><a href="#family">Family Portraits</a></li>
+              <li><a href="#events">Events</a></li>
+            </ul>
+          </li>
+
+          <li><a class="menu-link" href="#about">About</a></li>
+          <li><a class="menu-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
     </div>
-  </footer>
+  </div>
+
+  <div class="page-sections">
+    <section id="portraits"></section>
+    <section id="family"></section>
+    <section id="events"></section>
+    <section id="about"></section>
+    <section id="contact"></section>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const menuClose = document.getElementById("menuClose");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const portfolioToggle = document.getElementById("portfolioToggle");
+    const portfolioSubmenu = document.getElementById("portfolioSubmenu");
+
+    menuToggle.addEventListener("click", () => {
+      menuOverlay.classList.add("active");
+    });
+
+    menuClose.addEventListener("click", () => {
+      menuOverlay.classList.remove("active");
+    });
+
+    portfolioToggle.addEventListener("click", () => {
+      portfolioSubmenu.classList.toggle("active");
+    });
+  </script>
 
 </body>
 </html>
