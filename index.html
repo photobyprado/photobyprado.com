@@ -927,12 +927,17 @@
                 Daniel Prado
               </h2>
 
-              <form class="contact-form">
+              <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="hidden" name="_replyto" value="daniel@photobyprado.com">
                 <div class="contact-row">
                   <input type="text" name="name" placeholder="Name" required>
                   <input type="email" name="email" placeholder="Email" required>
                 </div>
-
+                
+                <div class="contact-row">
+                <input type="tel" name="phone" placeholder="Phone (optional)">
+                  </div>
+                
                 <div class="contact-row">
                   <select name="inquiryType" required>
                     <option value="" selected disabled>Inquiry type</option>
@@ -1106,3 +1111,4 @@
 
 </body>
 </html>
+
