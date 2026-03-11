@@ -51,7 +51,19 @@
       overflow: hidden;
       background: #000;
     }
+.overlay-logo {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 120;
+  width: 130px;
+}
 
+.overlay-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
     .top-bar {
       position: absolute;
       top: 22px;
@@ -763,6 +775,10 @@
   <div class="menu-overlay" id="menuOverlay">
     <div class="menu-inner">
 
+      <div class="overlay-logo">
+      <img src="images/logo.png" alt="Photo By Prado logo">
+    </div>
+
       <div class="menu-top">
         <div class="menu-social">
           <a href="https://www.instagram.com/photobyprado/" target="_blank" aria-label="Instagram">
@@ -1136,6 +1152,7 @@
 
 </body>
 </html>
+
 
 
 
