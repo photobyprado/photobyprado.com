@@ -108,19 +108,21 @@
 
 @media (min-width: 1200px) {
   .desktop-nav {
-    display: flex;
+    display: flex !important;
   }
 
-  .menu-toggle {
+  #menuToggle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .desktop-nav {
     display: none !important;
   }
 
-  .top-bar {
-    gap: 0;
-  }
-}
-  .menu-toggle {
-    display: inline-flex;
+  #menuToggle {
+    display: inline-flex !important;
   }
 }
 
@@ -1301,6 +1303,7 @@ desktopContactToggle.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
