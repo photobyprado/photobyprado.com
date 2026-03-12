@@ -79,12 +79,13 @@
       align-items: center;
       gap: 18px;
     }
-    .desktop-nav {
+  .desktop-nav {
   position: absolute;
   top: 28px;
-  left: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 55;
-  display: flex;
+  display: none;
   gap: 34px;
   align-items: center;
 }
@@ -105,9 +106,23 @@
   color: var(--accent);
 }
 
-@media (max-width: 900px) {
+@media (min-width: 1200px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .top-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 1199px) {
   .desktop-nav {
     display: none;
+  }
+
+  .top-bar {
+    display: flex;
   }
 }
 
@@ -1271,6 +1286,7 @@ portfolioLinks.forEach(link => {
 
 </body>
 </html>
+
 
 
 
