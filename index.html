@@ -79,7 +79,7 @@
       align-items: center;
       gap: 18px;
     }
-  .desktop-nav {
+ .desktop-nav {
   position: absolute;
   top: 28px;
   left: 50%;
@@ -111,7 +111,7 @@
     display: flex;
   }
 
-  .top-bar {
+  .menu-toggle {
     display: none;
   }
 }
@@ -121,8 +121,8 @@
     display: none;
   }
 
-  .top-bar {
-    display: flex;
+  .menu-toggle {
+    display: inline-flex;
   }
 }
 
@@ -1136,6 +1136,10 @@
 
     const aboutToggle = document.getElementById("aboutToggle");
     const contactToggle = document.getElementById("contactToggle");
+    
+    const desktopPortfolioToggle = document.getElementById("desktopPortfolioToggle");
+const desktopAboutToggle = document.getElementById("desktopAboutToggle");
+const desktopContactToggle = document.getElementById("desktopContactToggle");
 
     const backToMain = document.getElementById("backToMain");
     const backFromAbout = document.getElementById("backFromAbout");
@@ -1237,7 +1241,20 @@ portfolioLinks.forEach(link => {
     contactToggle.addEventListener("click", () => {
       showContactScreen();
     });
+desktopPortfolioToggle.addEventListener("click", () => {
+  menuOverlay.classList.add("active");
+  showPortfolioCategories();
+});
 
+desktopAboutToggle.addEventListener("click", () => {
+  menuOverlay.classList.add("active");
+  showAboutScreen();
+});
+
+desktopContactToggle.addEventListener("click", () => {
+  menuOverlay.classList.add("active");
+  showContactScreen();
+});
     backToMain.addEventListener("click", () => {
       showMainMenu();
     });
@@ -1286,6 +1303,7 @@ portfolioLinks.forEach(link => {
 
 </body>
 </html>
+
 
 
 
