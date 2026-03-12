@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Photo By Prado</title>
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
-<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -57,19 +55,21 @@
       overflow: hidden;
       background: #000;
     }
-.overlay-logo {
-  position: absolute;
-  top: 22px;
-  left: 24px;
-  z-index: 120;
-  width: 110px;
-}
 
-.overlay-logo img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .overlay-logo {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      z-index: 120;
+      width: 110px;
+    }
+
+    .overlay-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .top-bar {
       position: absolute;
       top: 22px;
@@ -205,13 +205,13 @@
     }
 
     .brand-text .line1 {
-  font-size: clamp(2.4rem, 7vw, 5rem);
-}
+      font-size: clamp(2.4rem, 7vw, 5rem);
+    }
 
-.brand-text .line2 {
-  font-size: clamp(2.4rem, 7vw, 5rem);
-  margin-left: 0;
-}
+    .brand-text .line2 {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      margin-left: 0;
+    }
 
     .brand-sub {
       margin-top: 18px;
@@ -310,6 +310,34 @@
       display: flex;
       flex-direction: column;
       gap: 22px;
+    }
+
+    .portfolio-menu-item {
+      position: relative;
+    }
+
+    .portfolio-dropdown {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+      margin-left: 8px;
+    }
+
+    .portfolio-dropdown.active {
+      display: flex;
+    }
+
+    .portfolio-dropdown a {
+      color: rgba(255,255,255,0.88);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .portfolio-dropdown a:hover {
+      color: var(--accent);
     }
 
     .menu-link,
@@ -440,7 +468,6 @@
       display: block;
     }
 
-    /* ABOUT */
     .about-layout {
       display: grid;
       grid-template-columns: 1fr 0.95fr;
@@ -502,16 +529,16 @@
       object-fit: cover;
       display: block;
     }
-/* FOOTERS */
-.about-footer,
-.contact-footer {
-  margin-top: 60px;
-  text-align: center;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.6);
-}
-    /* CONTACT */
+
+    .about-footer,
+    .contact-footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+    }
+
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 0.95fr;
@@ -578,7 +605,6 @@
       opacity: 0.92;
     }
 
-    /* LIGHTBOX */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -703,33 +729,33 @@
         left: -14px;
         bottom: -14px;
       }
+
       .brand-text {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-  }
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+      }
 
-  .brand-text .line1,
-  .brand-text .line2 {
-    font-size: clamp(2.2rem, 12vw, 4.2rem);
-    line-height: 0.95;
-    text-align: center;
-  }
+      .brand-text .line1,
+      .brand-text .line2 {
+        font-size: clamp(2.2rem, 12vw, 4.2rem);
+        line-height: 0.95;
+        text-align: center;
+      }
 
-  .brand-text .line2 {
-    margin-left: 0;
-  }
+      .brand-text .line2 {
+        margin-left: 0;
+      }
 
-  .brand-sub {
-    text-align: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    line-height: 1.6;
-    max-width: 90%;
-    margin: 14px auto 0;
-  }
-}
-
+      .brand-sub {
+        text-align: center;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        line-height: 1.6;
+        max-width: 90%;
+        margin: 14px auto 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -797,10 +823,9 @@
         <div class="brand-text">
           <div class="line1">Photo By</div>
           <div class="line2">Prado</div>
-          <div class="brand-sub">Portraits • Family Portraits • Events</div>
+          <div class="brand-sub">Portraits · Family Portraits<br>Events</div>
         </div>
       </div>
-      
     </div>
   </div>
 
@@ -808,8 +833,8 @@
     <div class="menu-inner">
 
       <div class="overlay-logo">
-      <img src="images/logo.png" alt="Photo By Prado logo">
-    </div>
+        <img src="images/logo.png" alt="Photo By Prado logo">
+      </div>
 
       <div class="menu-top">
         <div class="menu-social">
@@ -827,12 +852,16 @@
         </button>
       </div>
 
-      <!-- MAIN MENU -->
       <div class="menu-screen active" id="screenMain">
         <div class="menu-main-wrap">
           <ul class="menu-list">
-            <li>
+            <li class="portfolio-menu-item">
               <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
+              <ul class="portfolio-dropdown" id="portfolioDropdown">
+                <li><a href="#" class="portfolio-link" data-gallery="portraits">Portraits</a></li>
+                <li><a href="#" class="portfolio-link" data-gallery="family">Family Portraits</a></li>
+                <li><a href="#" class="portfolio-link" data-gallery="events">Events</a></li>
+              </ul>
             </li>
             <li><button type="button" class="menu-link" id="aboutToggle">About</button></li>
             <li><button type="button" class="menu-link" id="contactToggle">Contact</button></li>
@@ -840,7 +869,6 @@
         </div>
       </div>
 
-      <!-- PORTFOLIO CATEGORY SCREEN -->
       <div class="menu-screen" id="screenPortfolioCategories">
         <div class="portfolio-browser">
           <div class="back-row">
@@ -868,7 +896,6 @@
         </div>
       </div>
 
-      <!-- PORTRAITS GALLERY -->
       <div class="menu-screen" id="galleryPortraits">
         <div class="gallery-view">
           <div class="back-row">
@@ -891,7 +918,6 @@
         </div>
       </div>
 
-      <!-- FAMILY GALLERY -->
       <div class="menu-screen" id="galleryFamily">
         <div class="gallery-view">
           <div class="back-row">
@@ -914,7 +940,6 @@
         </div>
       </div>
 
-      <!-- EVENTS GALLERY -->
       <div class="menu-screen" id="galleryEvents">
         <div class="gallery-view">
           <div class="back-row">
@@ -937,7 +962,6 @@
         </div>
       </div>
 
-      <!-- ABOUT SCREEN -->
       <div class="menu-screen" id="screenAbout">
         <div class="about-screen">
           <div class="back-row">
@@ -972,16 +996,12 @@
             </div>
           </div>
 
-          <!-- ABOUT FOOTER -->
-<div class="about-footer">
-  © 2026 Photo By Prado. All rights reserved.
-</div>
+          <div class="about-footer">
+            © 2026 Photo By Prado. All rights reserved.
+          </div>
         </div>
       </div>
 
-   
-
-      <!-- CONTACT SCREEN -->
       <div class="menu-screen" id="screenContact">
         <div class="contact-screen">
           <div class="back-row">
@@ -1001,11 +1021,11 @@
                   <input type="text" name="name" placeholder="Name" required>
                   <input type="email" name="email" placeholder="Email" required>
                 </div>
-                
+
                 <div class="contact-row">
-                <input type="tel" name="phone" placeholder="Phone (optional)">
-                  </div>
-                
+                  <input type="tel" name="phone" placeholder="Phone (optional)">
+                </div>
+
                 <div class="contact-row">
                   <select name="inquiryType" required>
                     <option value="" selected disabled>Inquiry type</option>
@@ -1029,10 +1049,9 @@
             </div>
           </div>
 
-          <!-- CONTACT FOOTER -->
-<div class="contact-footer">
-  © 2026 Photo By Prado. All rights reserved.
-</div>
+          <div class="contact-footer">
+            © 2026 Photo By Prado. All rights reserved.
+          </div>
         </div>
       </div>
 
@@ -1058,6 +1077,10 @@
     const screenContact = document.getElementById("screenContact");
 
     const portfolioToggle = document.getElementById("portfolioToggle");
+    const portfolioDropdown = document.getElementById("portfolioDropdown");
+    const portfolioLinks = document.querySelectorAll(".portfolio-link");
+    let portfolioClickCount = 0;
+
     const aboutToggle = document.getElementById("aboutToggle");
     const contactToggle = document.getElementById("contactToggle");
 
@@ -1086,15 +1109,19 @@
     function showMainMenu() {
       hideAllScreens();
       screenMain.classList.add("active");
+      portfolioDropdown.classList.remove("active");
+      portfolioClickCount = 0;
     }
 
     function showPortfolioCategories() {
       hideAllScreens();
       screenPortfolioCategories.classList.add("active");
+      portfolioDropdown.classList.remove("active");
     }
 
     function showGallery(name) {
       hideAllScreens();
+      portfolioDropdown.classList.remove("active");
 
       if (name === "portraits") {
         galleryPortraits.classList.add("active");
@@ -1108,11 +1135,15 @@
     function showAboutScreen() {
       hideAllScreens();
       screenAbout.classList.add("active");
+      portfolioDropdown.classList.remove("active");
+      portfolioClickCount = 0;
     }
 
     function showContactScreen() {
       hideAllScreens();
       screenContact.classList.add("active");
+      portfolioDropdown.classList.remove("active");
+      portfolioClickCount = 0;
     }
 
     menuToggle.addEventListener("click", () => {
@@ -1122,10 +1153,30 @@
 
     menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("active");
+      portfolioDropdown.classList.remove("active");
+      portfolioClickCount = 0;
     });
 
     portfolioToggle.addEventListener("click", () => {
-      showPortfolioCategories();
+      portfolioClickCount++;
+
+      if (portfolioClickCount === 1) {
+        portfolioDropdown.classList.add("active");
+      } else if (portfolioClickCount === 2) {
+        portfolioDropdown.classList.remove("active");
+        portfolioClickCount = 0;
+        showPortfolioCategories();
+      }
+    });
+
+    portfolioLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const galleryName = link.getAttribute("data-gallery");
+        portfolioDropdown.classList.remove("active");
+        portfolioClickCount = 0;
+        showGallery(galleryName);
+      });
     });
 
     aboutToggle.addEventListener("click", () => {
@@ -1184,13 +1235,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
