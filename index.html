@@ -79,6 +79,37 @@
       align-items: center;
       gap: 18px;
     }
+    .desktop-nav {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  z-index: 55;
+  display: flex;
+  gap: 34px;
+  align-items: center;
+}
+
+.desktop-nav button {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.92);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.desktop-nav button:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+}
 
     .icon-link,
     .menu-toggle,
@@ -1233,5 +1264,6 @@ portfolioLinks.forEach(link => {
 
 </body>
 </html>
+
 
 
