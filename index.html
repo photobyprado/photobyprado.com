@@ -1169,15 +1169,20 @@
       }
     });
 
-    portfolioLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const galleryName = link.getAttribute("data-gallery");
-        portfolioDropdown.classList.remove("active");
-        portfolioClickCount = 0;
-        showGallery(galleryName);
-      });
-    });
+portfolioLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    const galleryName = link.getAttribute("data-gallery");
+
+    portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+
+    showPortfolioCategories();
+
+    setTimeout(() => {
+      showGallery(galleryName);
+    }, 10);
+  });
+});
 
     aboutToggle.addEventListener("click", () => {
       showAboutScreen();
@@ -1235,3 +1240,4 @@
 
 </body>
 </html>
+
