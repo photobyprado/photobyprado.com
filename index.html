@@ -724,16 +724,23 @@
     }
 
     @media (max-width: 640px) {
-      .columns {
-  grid-template-columns: 1fr 1fr;
-}
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    padding: 3px;
+  }
 
-.columns .second-column {
-  display: block;
-}
+  .columns .second-column {
+    display: block;
+  }
 
-.columns .third-column {
-  display: none;
+  .columns .third-column {
+    display: none;
+  }
+
+  .track {
+    gap: 3px;
+  }
 }
 
       .top-bar {
