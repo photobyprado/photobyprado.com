@@ -47,7 +47,19 @@
       height: 100%;
       object-fit: cover;
     }
+.hero-vertical {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  height: auto;
+  object-fit: cover;
+}
 
+.hero-horizontal {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+}
     .site-wrap {
       position: relative;
       width: 100%;
@@ -190,16 +202,10 @@
       will-change: transform;
     }
 
-    .track img {
-      height: 48vh;
-      min-height: 320px;
-      border-radius: 0;
-    }
-
-    .track.small img {
-      height: 32vh;
-      min-height: 220px;
-    }
+   .track img,
+.track.small img {
+  height: auto;
+}
 
     .scroll-up {
       animation: scrollUp 28s linear infinite;
@@ -832,14 +838,14 @@
       <div class="columns">
         <div class="column first-column">
           <div class="track scroll-up">
-            <img src="images/hero1.jpg" alt="Photography image 1">
-            <img src="images/hero2.jpg" alt="Photography image 2">
-            <img src="images/hero3.jpg" alt="Photography image 3">
-            <img src="images/hero4.jpg" alt="Photography image 4">
-            <img src="images/hero1.jpg" alt="">
-            <img src="images/hero2.jpg" alt="">
-            <img src="images/hero3.jpg" alt="">
-            <img src="images/hero4.jpg" alt="">
+            <img src="images/hero1.jpg" class="hero-horizontal" alt="Photography image 1">
+            <img src="images/hero2.jpg" class="hero-vertical"   alt="Photography image 2">
+            <img src="images/hero3.jpg" class="hero-vertical"   alt="Photography image 3">
+            <img src="images/hero4.jpg" class="hero-horizontal" alt="Photography image 4">
+            <img src="images/hero1.jpg" class="hero-horizontal" alt="">
+            <img src="images/hero2.jpg" class="hero-vertical"   alt="">
+            <img src="images/hero3.jpg" class="hero-vertical"   alt="">
+            <img src="images/hero4.jpg" class="hero-horizontal" alt="">
           </div>
         </div>
 
