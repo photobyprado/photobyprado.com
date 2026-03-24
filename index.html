@@ -725,13 +725,16 @@
 
     @media (max-width: 640px) {
       .columns {
-        grid-template-columns: 1fr;
-      }
+  grid-template-columns: 1fr 1fr;
+}
 
-      .columns .second-column,
-      .columns .third-column {
-        display: none;
-      }
+.columns .second-column {
+  display: block;
+}
+
+.columns .third-column {
+  display: none;
+}
 
       .top-bar {
         top: 18px;
