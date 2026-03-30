@@ -10,7 +10,8 @@
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-
+   <script src="https://www.google.com/recaptcha/api.js"></script>
+      
   <style>
     :root {
       --bg: #000000;
@@ -1114,7 +1115,12 @@
 
                 <textarea name="message" placeholder="Your message here" required></textarea>
 
-                <button type="submit">Send Message</button>
+                <button class="g-recaptcha" 
+  data-sitekey="6LdTO54sAAAAAMqwQta3TBuHNkF3vsqfUfKBRQi-"
+  data-callback="onSubmit"
+  data-action="submit">
+  Send Message
+</button>
               </form>
             </div>
 
@@ -1323,6 +1329,12 @@ desktopContactToggle.addEventListener("click", () => {
         lightboxImage.src = "";
       }
     });
+  </script>
+
+   <script>
+    function onSubmit(token) {
+      document.querySelector('.contact-form').submit();
+    }
   </script>
 
 </body>
