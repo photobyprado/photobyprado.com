@@ -495,31 +495,28 @@
     }
 
     .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  align-items: start;
+  column-count: 3;
+  column-gap: 18px;
 }
 
-    .gallery-stack {
-      display: grid;
-      gap: 18px;
-    }
+  
 
     .gallery-item {
-      background: #111;
-      overflow: hidden;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-    }
+  background: #111;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  break-inside: avoid;
+  margin-bottom: 18px;
+}
 
     .gallery-item img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: block;
-    }
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 .gallery-item.portrait-vertical img {
   aspect-ratio: 2 / 3;
