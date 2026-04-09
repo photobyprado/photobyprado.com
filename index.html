@@ -494,11 +494,9 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.18));
     }
 
-   .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  align-items: start;
+  .gallery-grid {
+  column-count: 3;
+  column-gap: 18px;
 }
 
 .gallery-item {
@@ -507,6 +505,9 @@
   border: none;
   padding: 0;
   cursor: pointer;
+
+  break-inside: avoid;
+  margin-bottom: 18px;
 }
 
 .gallery-item img {
