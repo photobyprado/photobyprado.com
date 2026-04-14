@@ -505,21 +505,29 @@
   column-gap: 18px;
 }
 
- {
-  background: #111;
+.gallery-item {
+  display: block;
+  width: 100%;
+  background: transparent;
   overflow: hidden;
   border: none;
   padding: 0;
+  margin-bottom: 18px;
   cursor: pointer;
 
   break-inside: avoid;
-  margin-bottom: 18px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
- img {
+.gallery-item img {
   width: 100%;
   height: auto;
   display: block;
+  vertical-align: top;
 }
 
 .gallery-item.portrait-vertical img {
