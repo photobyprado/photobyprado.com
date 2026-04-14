@@ -1233,18 +1233,30 @@ const desktopContactToggle = document.getElementById("desktopContactToggle");
     const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
 
     const lightbox = document.getElementById("lightbox");
-   const lightboxImage = document.getElementById("lightboxImage");
-   const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
+
+    
+lightboxTriggers.forEach(button => {
+  button.addEventListener("click", () => {
+    const imageSrc = button.getAttribute("data-image");
+    lightboxImage.src = imageSrc;
+    lightbox.classList.add("active");
+  });
+});
 
 lightboxClose.addEventListener("click", () => {
   lightbox.classList.remove("active");
-
-  screenPortfolioCategories.classList.add("active");
-  galleryPortraits.classList.remove("active");
-  galleryFamily.classList.remove("active");
-  galleryEvents.classList.remove("active");
+  lightboxImage.src = "";
 });
-    const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+    lightboxImage.src = "";
+  }
+});
 
     function hideAllScreens() {
       screenMain.classList.remove("active");
