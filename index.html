@@ -718,7 +718,7 @@
   }
 
   .gallery-grid {
-    column-count: 1;
+    column-count: 2;
   }
 
   .brand-text .line2 {
@@ -905,8 +905,8 @@
             <img src="images/hero8.jpg" class="hero-vertical"   alt="Photography image 8">
             <img src="images/hero9.jpg" class="hero-vertical"  alt="Photography image 9">
             <img src="images/hero10.jpg" class="hero-vertical" alt="Photography image 10">
-            <img src="images/hero8.jpg" class="hero-vertical" alt="">
-            <img src="images/hero9.jpg  "class="hero-vertical"  alt="">
+            <img src="images/hero8.jpg" class="hero-vertical"  alt="">
+            <img src="images/hero9.jpg  "class="hero-vertical" alt="">
             <img src="images/hero10.jpg" class="hero-vertical" alt="">
             
           </div>
@@ -1078,7 +1078,6 @@
             </div>
           </div>
         </div>
-      </div>
 
       <div class="menu-screen" id="galleryEvents">
         <div class="gallery-view">
@@ -1393,25 +1392,7 @@ desktopContactToggle.addEventListener("click", () => {
       });
     });
 
-    lightboxTriggers.forEach(button => {
-      button.addEventListener("click", () => {
-        const imageSrc = button.getAttribute("data-image");
-        lightboxImage.src = imageSrc;
-        lightbox.classList.add("active");
-      });
-    });
-
-    lightboxClose.addEventListener("click", () => {
-      lightbox.classList.remove("active");
-      lightboxImage.src = "";
-    });
-
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove("active");
-        lightboxImage.src = "";
-      }
-    });
+  
   </script>
 
    <script>
