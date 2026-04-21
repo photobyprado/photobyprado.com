@@ -23,7 +23,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-   <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Ld9PcMsAAAAADn65qddEMW0nbhG3a5QAcyHXIt-"></script>
       
   <style>
     :root {
@@ -1228,7 +1228,7 @@
           <textarea name="message" placeholder="Your message here" required></textarea>
 
           <button class="g-recaptcha"
-            data-sitekey="6LdTO54sAAAAAMqwQta3TBuHNkF3vsqfUfKBRQi-"
+            data-sitekey="6Ld9PcMsAAAAADn65qddEMW0nbhG3a5QAcyHXIt-"
             data-callback="onSubmit"
             data-action="submit">
             Send Message
@@ -1438,21 +1438,30 @@ desktopContactToggle.addEventListener("click", () => {
   
   </script>
 
-   <script>
-    function onSubmit(token) {
-  const form = document.querySelector('.contact-form');
+  <script>
+  function onSubmit(token) {
+    const form = document.querySelector('.contact-form');
 
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form)
-  }).then(() => {
-    window.location.href = "/"; // go to home
-  });
-}
-  </script>
+    // Add the token as a hidden field
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'g-recaptcha-response';
+    input.value = token;
+    form.appendChild(input);
 
-</body>
-</html>
+    // Disable button while sending
+    const btn = form.querySelector('button');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    }).then(() => {
+      window.location.href = "/";
+    });
+  }
+</script>
 
 
 
