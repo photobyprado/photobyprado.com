@@ -1322,45 +1322,52 @@ lightbox.addEventListener("click", (e) => {
       screenContact.classList.remove("active");
     }
 
-    function showMainMenu() {
-      hideAllScreens();
-      screenMain.classList.add("active");
-      portfolioDropdown.classList.remove("active");
-      portfolioClickCount = 0;
-    }
+   function showMainMenu() {
+  hideAllScreens();
+  screenMain.classList.add("active");
+  portfolioDropdown.classList.remove("active");
+  portfolioClickCount = 0;
+  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
+  history.pushState({ screen: 'main' }, '', '/');
+}
 
-    function showPortfolioCategories() {
-      hideAllScreens();
-      screenPortfolioCategories.classList.add("active");
-      portfolioDropdown.classList.remove("active");
-    }
+function showPortfolioCategories() {
+  hideAllScreens();
+  screenPortfolioCategories.classList.add("active");
+  portfolioDropdown.classList.remove("active");
+  history.pushState({ screen: 'portfolios' }, '', '#portfolios');
+}
 
-    function showGallery(name) {
-      hideAllScreens();
-      portfolioDropdown.classList.remove("active");
+function showGallery(name) {
+  hideAllScreens();
+  portfolioDropdown.classList.remove("active");
+  if (name === "portraits") {
+    galleryPortraits.classList.add("active");
+  } else if (name === "family") {
+    galleryFamily.classList.add("active");
+  } else if (name === "events") {
+    galleryEvents.classList.add("active");
+  }
+  history.pushState({ screen: name }, '', '#' + name);
+}
 
-      if (name === "portraits") {
-        galleryPortraits.classList.add("active");
-      } else if (name === "family") {
-        galleryFamily.classList.add("active");
-      } else if (name === "events") {
-        galleryEvents.classList.add("active");
-      }
-    }
+function showAboutScreen() {
+  hideAllScreens();
+  screenAbout.classList.add("active");
+  portfolioDropdown.classList.remove("active");
+  portfolioClickCount = 0;
+  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
+  history.pushState({ screen: 'about' }, '', '#about');
+}
 
-    function showAboutScreen() {
-      hideAllScreens();
-      screenAbout.classList.add("active");
-      portfolioDropdown.classList.remove("active");
-      portfolioClickCount = 0;
-    }
-
-    function showContactScreen() {
-      hideAllScreens();
-      screenContact.classList.add("active");
-      portfolioDropdown.classList.remove("active");
-      portfolioClickCount = 0;
-    }
+function showContactScreen() {
+  hideAllScreens();
+  screenContact.classList.add("active");
+  portfolioDropdown.classList.remove("active");
+  portfolioClickCount = 0;
+  document.querySelector('.grecaptcha-badge').style.visibility = 'visible';
+  history.pushState({ screen: 'contact' }, '', '#contact');
+}
 
     menuToggle.addEventListener("click", () => {
       menuOverlay.classList.add("active");
@@ -1439,6 +1446,32 @@ desktopContactToggle.addEventListener("click", () => {
       });
     });
 
+    </script>
+
+  <script>
+  // Handle back/forward browser buttons
+  window.addEventListener('popstate', (e) => {
+    const state = e.state;
+    if (!state || state.screen === 'main') {
+      menuOverlay.classList.remove("active");
+      showMainMenu();
+    } else {
+      menuOverlay.classList.add("active");
+      if (state.screen === 'portfolios') showPortfolioCategories();
+      else if (state.screen === 'about') showAboutScreen();
+      else if (state.screen === 'contact') showContactScreen();
+      else if (state.screen === 'portraits' || state.screen === 'family' || state.screen === 'events') showGallery(state.screen);
+    }
+  });
+
+  // Handle page refresh — restore screen from URL hash
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'portfolios') { menuOverlay.classList.add("active"); showPortfolioCategories(); }
+    else if (hash === 'about') { menuOverlay.classList.add("active"); showAboutScreen(); }
+    else if (hash === 'contact') { menuOverlay.classList.add("active"); showContactScreen(); }
+    else if (hash === 'portraits' || hash === 'family' || hash === 'events') { menuOverlay.classList.add("active"); showGallery(hash); }
+  });
   
   </script>
 
