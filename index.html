@@ -1370,9 +1370,13 @@ function showContactScreen() {
 }
 
     menuToggle.addEventListener("click", () => {
-      menuOverlay.classList.add("active");
-      showMainMenu();
-    });
+  menuOverlay.classList.add("active");
+  hideAllScreens();
+  screenMain.classList.add("active");
+  portfolioDropdown.classList.remove("active");
+  portfolioClickCount = 0;
+  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
+});
 
     menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("active");
@@ -1393,10 +1397,12 @@ function showContactScreen() {
     });
 
 portfolioLinks.forEach(link => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const galleryName = link.getAttribute("data-gallery");
     portfolioDropdown.classList.remove("active");
     portfolioClickCount = 0;
-    showPortfolioCategories();
+    showGallery(galleryName);
   });
 });
 
