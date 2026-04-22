@@ -1,31 +1,17 @@
-Future Imperfect by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Daniel Prado
+Owner of Photo By Prado
+photobyprado.com
 
+License
 
-It's been a long time coming, but I've finally gotten around to creating a brand new
-blog-style template (and the first since Striped, which came out waaaaay back in 2013).
-Anyway, Future Imperfect features a clean, expansive layout, a toggleable search box,
-and -- because pretty much all modern browsers can use it now -- a whole lot of flexbox
-action. Enjoy it :)
+This website and all of its contents, including but not limited to photographs, images, text, branding, logos, layout, and design elements, are owned by Daniel Prado / Photo By Prado unless otherwise stated.
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+The content on this website is not free to use.
 
-(* = not included)
+No image, photograph, text, graphic, or other material from this website may be copied, downloaded, reproduced, edited, republished, distributed, transmitted, displayed, sold, used for AI training, or used in any personal, commercial, editorial, or promotional way without prior written permission from Daniel Prado.
 
-AJ
-aj@lkn.io | @ajlkn
+Viewing this website does not give any user any license or ownership right to any content shown on it.
 
+Unauthorized use of any material from this website may violate copyright, trademark, privacy, and other applicable laws.
 
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+Copyright © 2026 Daniel Prado / Photo By Prado. All rights reserved.
