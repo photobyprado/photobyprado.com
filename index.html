@@ -1290,205 +1290,189 @@
   </div>
 
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const menuClose = document.getElementById("menuClose");
-    const menuOverlay = document.getElementById("menuOverlay");
+  const menuToggle = document.getElementById("menuToggle");
+  const menuClose = document.getElementById("menuClose");
+  const menuOverlay = document.getElementById("menuOverlay");
 
-    const screenMain = document.getElementById("screenMain");
-    const screenPortfolioCategories = document.getElementById("screenPortfolioCategories");
-    const galleryPortraits = document.getElementById("galleryPortraits");
-    const galleryFamily = document.getElementById("galleryFamily");
-    const galleryEvents = document.getElementById("galleryEvents");
-    const screenAbout = document.getElementById("screenAbout");
-    const screenContact = document.getElementById("screenContact");
+  const screenMain = document.getElementById("screenMain");
+  const screenPortfolioCategories = document.getElementById("screenPortfolioCategories");
+  const galleryPortraits = document.getElementById("galleryPortraits");
+  const galleryFamily = document.getElementById("galleryFamily");
+  const galleryEvents = document.getElementById("galleryEvents");
+  const screenAbout = document.getElementById("screenAbout");
+  const screenContact = document.getElementById("screenContact");
 
-    const portfolioToggle = document.getElementById("portfolioToggle");
-    const portfolioDropdown = document.getElementById("portfolioDropdown");
-    const portfolioLinks = document.querySelectorAll(".portfolio-link");
-    let portfolioClickCount = 0;
+  const portfolioToggle = document.getElementById("portfolioToggle");
+  const portfolioDropdown = document.getElementById("portfolioDropdown");
 
-  
-    const backToMain = document.getElementById("backToMain");
-    const backFromAbout = document.getElementById("backFromAbout");
-    const backFromContact = document.getElementById("backFromContact");
+  const backToMain = document.getElementById("backToMain");
+  const backFromAbout = document.getElementById("backFromAbout");
+  const backFromContact = document.getElementById("backFromContact");
 
-    const openGalleryButtons = document.querySelectorAll(".open-gallery");
-    const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
+  const openGalleryButtons = document.querySelectorAll(".open-gallery");
+  const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
 
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxClose = document.getElementById("lightboxClose");
-    const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxClose = document.getElementById("lightboxClose");
+  const lightboxTriggers = document.querySelectorAll(".lightbox-trigger");
 
-    
-lightboxTriggers.forEach(button => {
-  button.addEventListener("click", () => {
-    const imageSrc = button.getAttribute("data-image");
-    lightboxImage.src = imageSrc;
-    lightbox.classList.add("active");
-  });
-});
+  let portfolioClickCount = 0;
 
-lightboxClose.addEventListener("click", () => {
-  lightbox.classList.remove("active");
-  lightboxImage.src = "";
-});
-
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) {
-    lightbox.classList.remove("active");
-    lightboxImage.src = "";
+  function setRecaptchaBadge(visible) {
+    const badge = document.querySelector(".grecaptcha-badge");
+    if (badge) {
+      badge.style.visibility = visible ? "visible" : "hidden";
+    }
   }
-});
 
-    function hideAllScreens() {
-      screenMain.classList.remove("active");
-      screenPortfolioCategories.classList.remove("active");
-      galleryPortraits.classList.remove("active");
-      galleryFamily.classList.remove("active");
-      galleryEvents.classList.remove("active");
-      screenAbout.classList.remove("active");
-      screenContact.classList.remove("active");
+  function hideAllScreens() {
+    if (screenMain) screenMain.classList.remove("active");
+    if (screenPortfolioCategories) screenPortfolioCategories.classList.remove("active");
+    if (galleryPortraits) galleryPortraits.classList.remove("active");
+    if (galleryFamily) galleryFamily.classList.remove("active");
+    if (galleryEvents) galleryEvents.classList.remove("active");
+    if (screenAbout) screenAbout.classList.remove("active");
+    if (screenContact) screenContact.classList.remove("active");
+  }
+
+  function showMainMenu() {
+    hideAllScreens();
+    if (screenMain) screenMain.classList.add("active");
+    if (portfolioDropdown) portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+    setRecaptchaBadge(false);
+  }
+
+  function showPortfolioCategories() {
+    hideAllScreens();
+    if (screenPortfolioCategories) screenPortfolioCategories.classList.add("active");
+    if (portfolioDropdown) portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+    setRecaptchaBadge(false);
+  }
+
+  function showGallery(name) {
+    hideAllScreens();
+
+    if (name === "portraits" && galleryPortraits) {
+      galleryPortraits.classList.add("active");
     }
 
-   function showMainMenu() {
-  hideAllScreens();
-  screenMain.classList.add("active");
-  portfolioDropdown.classList.remove("active");
-  portfolioClickCount = 0;
-  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
-  history.pushState({ screen: 'main' }, '', '/');
-}
+    if (name === "family" && galleryFamily) {
+      galleryFamily.classList.add("active");
+    }
 
-function showPortfolioCategories() {
-  hideAllScreens();
-  screenPortfolioCategories.classList.add("active");
-  portfolioDropdown.classList.remove("active");
-  history.pushState({ screen: 'portfolios' }, '', '#portfolios');
-}
+    if (name === "events" && galleryEvents) {
+      galleryEvents.classList.add("active");
+    }
 
-function showGallery(name) {
-  hideAllScreens();
-  portfolioDropdown.classList.remove("active");
-  if (name === "portraits") {
-    galleryPortraits.classList.add("active");
-  } else if (name === "family") {
-    galleryFamily.classList.add("active");
-  } else if (name === "events") {
-    galleryEvents.classList.add("active");
+    if (portfolioDropdown) portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+    setRecaptchaBadge(false);
   }
-  history.pushState({ screen: name }, '', '#' + name);
-}
 
-function showAboutScreen() {
-  hideAllScreens();
-  screenAbout.classList.add("active");
-  portfolioDropdown.classList.remove("active");
-  portfolioClickCount = 0;
-  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
-  history.pushState({ screen: 'about' }, '', '#about');
-}
+  function showAboutScreen() {
+    hideAllScreens();
+    if (screenAbout) screenAbout.classList.add("active");
+    if (portfolioDropdown) portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+    setRecaptchaBadge(false);
+  }
 
-function showContactScreen() {
-  hideAllScreens();
-  screenContact.classList.add("active");
-  portfolioDropdown.classList.remove("active");
-  portfolioClickCount = 0;
-  document.querySelector('.grecaptcha-badge').style.visibility = 'visible';
-  history.pushState({ screen: 'contact' }, '', '#contact');
-}
+  function showContactScreen() {
+    hideAllScreens();
+    if (screenContact) screenContact.classList.add("active");
+    if (portfolioDropdown) portfolioDropdown.classList.remove("active");
+    portfolioClickCount = 0;
+    setRecaptchaBadge(true);
+  }
 
+  if (menuToggle && menuOverlay) {
     menuToggle.addEventListener("click", () => {
-  menuOverlay.classList.add("active");
-  hideAllScreens();
-  screenMain.classList.add("active");
-  portfolioDropdown.classList.remove("active");
-  portfolioClickCount = 0;
-  document.querySelector('.grecaptcha-badge').style.visibility = 'hidden';
-});
+      menuOverlay.classList.add("active");
+      showMainMenu();
+    });
+  }
 
+  if (menuClose && menuOverlay) {
     menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("active");
-      portfolioDropdown.classList.remove("active");
+      if (portfolioDropdown) portfolioDropdown.classList.remove("active");
       portfolioClickCount = 0;
+      setRecaptchaBadge(false);
     });
+  }
 
+  if (portfolioToggle && portfolioDropdown) {
     portfolioToggle.addEventListener("click", () => {
       portfolioClickCount++;
 
       if (portfolioClickCount === 1) {
         portfolioDropdown.classList.add("active");
-      } else if (portfolioClickCount === 2) {
-        portfolioDropdown.classList.remove("active");
-        portfolioClickCount = 0;
+      } else {
         showPortfolioCategories();
       }
     });
+  }
 
-portfolioLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const galleryName = link.getAttribute("data-gallery");
-    portfolioDropdown.classList.remove("active");
-    portfolioClickCount = 0;
-    showGallery(galleryName);
-  });
-});
-
-
+  if (backToMain) {
     backToMain.addEventListener("click", () => {
       showMainMenu();
     });
+  }
 
+  if (backFromAbout) {
     backFromAbout.addEventListener("click", () => {
       showMainMenu();
     });
+  }
 
+  if (backFromContact) {
     backFromContact.addEventListener("click", () => {
       showMainMenu();
     });
+  }
 
-    openGalleryButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const galleryName = button.getAttribute("data-gallery");
-        showGallery(galleryName);
-      });
+  openGalleryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const galleryName = button.getAttribute("data-gallery");
+      showGallery(galleryName);
     });
-
-    backToPortfolioButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        showPortfolioCategories();
-      });
-    });
-
-    </script>
-
-  <script>
-  // Handle back/forward browser buttons
-  window.addEventListener('popstate', (e) => {
-    const state = e.state;
-    if (!state || state.screen === 'main') {
-      menuOverlay.classList.remove("active");
-      showMainMenu();
-    } else {
-      menuOverlay.classList.add("active");
-      if (state.screen === 'portfolios') showPortfolioCategories();
-      else if (state.screen === 'about') showAboutScreen();
-      else if (state.screen === 'contact') showContactScreen();
-      else if (state.screen === 'portraits' || state.screen === 'family' || state.screen === 'events') showGallery(state.screen);
-    }
   });
 
-  // Handle page refresh — restore screen from URL hash
-  window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash === 'portfolios') { menuOverlay.classList.add("active"); showPortfolioCategories(); }
-    else if (hash === 'about') { menuOverlay.classList.add("active"); showAboutScreen(); }
-    else if (hash === 'contact') { menuOverlay.classList.add("active"); showContactScreen(); }
-    else if (hash === 'portraits' || hash === 'family' || hash === 'events') { menuOverlay.classList.add("active"); showGallery(hash); }
+  backToPortfolioButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      showPortfolioCategories();
+    });
   });
-  
-  </script>
+
+  lightboxTriggers.forEach(button => {
+    button.addEventListener("click", () => {
+      const imageSrc = button.getAttribute("data-image");
+      if (lightbox && lightboxImage) {
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add("active");
+      }
+    });
+  });
+
+  if (lightboxClose && lightbox && lightboxImage) {
+    lightboxClose.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+      lightboxImage.src = "";
+    });
+  }
+
+  if (lightbox && lightboxImage) {
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
+      }
+    });
+  }
+</script>
 
   <script>
   function onSubmit(token) {
