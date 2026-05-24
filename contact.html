@@ -932,6 +932,10 @@ body.subpage .gallery-view,
 body.subpage .contact-screen {
   padding-bottom: 90px;
 }
+    body.subpage .about-screen .back-row,
+body.subpage .contact-screen .back-row {
+  display: block !important;
+}
 .review-card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.14);
@@ -1422,6 +1426,32 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuOverlay) {
     menuOverlay.classList.add("active");
   }
+  const backFromAbout = document.getElementById("backFromAbout");
+const backFromContact = document.getElementById("backFromContact");
+
+function showOnlyScreen(screenId) {
+  document.querySelectorAll(".menu-screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add("active");
+    window.scrollTo(0, 0);
+  }
+}
+
+if (backFromAbout) {
+  backFromAbout.addEventListener("click", () => {
+    showOnlyScreen("screenMain");
+  });
+}
+
+if (backFromContact) {
+  backFromContact.addEventListener("click", () => {
+    showOnlyScreen("screenMain");
+  });
+}
 
   document.querySelectorAll(".lightbox-trigger").forEach(button => {
     button.addEventListener("click", () => {
