@@ -1168,36 +1168,7 @@ body.subpage #screenPortfolioCategories .back-row {
           <h2 class="screen-title">Portraits</h2>
 
 
-<div class="gallery-grid">
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait1.jpg"><img src="images/Portraits/portrait1.jpg" alt="Portrait 1"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait2.jpg"><img src="images/Portraits/portrait2.jpg" alt="Portrait 2"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait3.jpg"><img src="images/Portraits/portrait3.jpg" alt="Portrait 3"></button>
-
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait4.jpg"><img src="images/Portraits/portrait4.jpg" alt="Portrait 4"></button>
-  <button class="gallery-item portrait-vertical   lightbox-trigger" data-image="images/Portraits/portrait5.jpg"><img src="images/Portraits/portrait5.jpg" alt="Portrait 5"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait6.jpg"><img src="images/Portraits/portrait6.jpg" alt="Portrait 6"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait7.jpg"><img src="images/Portraits/portrait7.jpg" alt="Portrait 7"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait8.jpg"><img src="images/Portraits/portrait8.jpg" alt="Portrait 8"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait9.jpg"><img src="images/Portraits/portrait9.jpg" alt="Portrait 9"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait10.jpg"><img src="images/Portraits/portrait10.jpg" alt="Portrait 10"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait11.jpg"><img src="images/Portraits/portrait11.jpg" alt="Portrait 11"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait12.jpg"><img src="images/Portraits/portrait12.jpg" alt="Portrait 12"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait13.jpg"><img src="images/Portraits/portrait13.jpg" alt="Portrait 13"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait14.jpg"><img src="images/Portraits/portrait14.jpg" alt="Portrait 14"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait15.jpg"><img src="images/Portraits/portrait15.jpg" alt="Portrait 15"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait16.jpg"><img src="images/Portraits/portrait16.jpg" alt="Portrait 16"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait17.jpg"><img src="images/Portraits/portrait17.jpg" alt="Portrait 17"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait18.jpg"><img src="images/Portraits/portrait18.jpg" alt="Portrait 18"></button>
-
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait19.jpg"><img src="images/Portraits/portrait19.jpg" alt="Portrait 19"></button>
-  
-
-</div>
+<div class="gallery-grid" id="portraitsGallery"></div>
       </div>
       </div>
 
@@ -1209,25 +1180,9 @@ body.subpage #screenPortfolioCategories .back-row {
 
           <h2 class="screen-title">Family Portraits</h2>
 
-          <div class="gallery-grid">
-<button class="gallery-item portrait-vertical  lightbox-trigger" data-image="images/Familyportraits/family1.jpg"><img src="images/Familyportraits/family1.jpg" alt="Family 1"></button>
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family2.jpg"><img src="images/Familyportraits/family2.jpg" alt="Family 2"></button>
-<button class="gallery-item portrait-vertical  lightbox-trigger" data-image="images/Familyportraits/family3.jpg"><img src="images/Familyportraits/family3.jpg" alt="Family 3"></button>
-
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family4.jpg"><img src="images/Familyportraits/family4.jpg" alt="Family 4"></button>
-<button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Familyportraits/family5.jpg"><img src="images/Familyportraits/family5.jpg" alt="Family 5"></button>
-<button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Familyportraits/family6.jpg"><img src="images/Familyportraits/family6.jpg" alt="Family 6"></button>
-
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family7.jpg"><img src="images/Familyportraits/family7.jpg" alt="Family 7"></button>
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family8.jpg"><img src="images/Familyportraits/family8.jpg" alt="Family 8"></button>
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family9.jpg"><img src="images/Familyportraits/family9.jpg" alt="Family 9"></button>
-
-<button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Familyportraits/family10.jpg"><img src="images/Familyportraits/family10.jpg" alt="Family 10"></button>
-<button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Familyportraits/family11.jpg"><img src="images/Familyportraits/family11.jpg" alt="Family 11"></button>
-
+       <div class="gallery-grid" id="familyGallery"></div>
             </div>
           </div>
-        </div>
 
       <div class="menu-screen" id="galleryEvents">
         <div class="gallery-view">
@@ -1410,13 +1365,17 @@ body.subpage #screenPortfolioCategories .back-row {
 
 
 
-
+<script src="galleries.js"></script>
+<script src="gallery-render.js"></script>
 
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const screenId = document.body.getAttribute("data-screen");
   const menuOverlay = document.getElementById("menuOverlay");
+  
+ renderGallery("portraits", "portraitsGallery");
+renderGallery("family", "familyGallery");
 
   document.querySelectorAll(".menu-screen").forEach(screen => {
     screen.classList.remove("active");
