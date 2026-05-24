@@ -1456,6 +1456,37 @@ if (backToMain) {
     showOnlyScreen("screenMain");
   });
 }
+  const portfolioToggle = document.getElementById("portfolioToggle");
+const openGalleryButtons = document.querySelectorAll(".open-gallery");
+
+function showGallery(name) {
+  document.querySelectorAll(".menu-screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  if (name === "portraits") {
+    document.getElementById("galleryPortraits").classList.add("active");
+  } else if (name === "family") {
+    document.getElementById("galleryFamily").classList.add("active");
+  } else if (name === "events") {
+    document.getElementById("galleryEvents").classList.add("active");
+  }
+
+  window.scrollTo(0, 0);
+}
+
+if (portfolioToggle) {
+  portfolioToggle.addEventListener("click", () => {
+    showOnlyScreen("screenPortfolioCategories");
+  });
+}
+
+openGalleryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const galleryName = button.getAttribute("data-gallery");
+    showGallery(galleryName);
+  });
+});
 
   document.querySelectorAll(".lightbox-trigger").forEach(button => {
     button.addEventListener("click", () => {
