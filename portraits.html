@@ -932,7 +932,13 @@ body.subpage .gallery-view,
 body.subpage .contact-screen {
   padding-bottom: 90px;
 }
+body.subpage .gallery-view .back-row {
+  display: block !important;
+}
 
+body.subpage #screenPortfolioCategories .back-row {
+  display: block !important;
+}
 .review-card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.14);
@@ -1423,6 +1429,32 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuOverlay) {
     menuOverlay.classList.add("active");
   }
+  const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
+const backToMain = document.getElementById("backToMain");
+
+function showOnlyScreen(screenId) {
+  document.querySelectorAll(".menu-screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add("active");
+    window.scrollTo(0, 0);
+  }
+}
+
+backToPortfolioButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    showOnlyScreen("screenPortfolioCategories");
+  });
+});
+
+if (backToMain) {
+  backToMain.addEventListener("click", () => {
+    showOnlyScreen("screenMain");
+  });
+}
 
   document.querySelectorAll(".lightbox-trigger").forEach(button => {
     button.addEventListener("click", () => {
