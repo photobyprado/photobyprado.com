@@ -1165,39 +1165,10 @@ body.subpage #screenPortfolioCategories .back-row {
           </div>
 
           <h2 class="screen-title">Portraits</h2>
+          
+<div class="gallery-grid" id="portraitsGallery"></div>
 
-
-<div class="gallery-grid">
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait1.jpg"><img src="images/Portraits/portrait1.jpg" alt="Portrait 1"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait2.jpg"><img src="images/Portraits/portrait2.jpg" alt="Portrait 2"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait3.jpg"><img src="images/Portraits/portrait3.jpg" alt="Portrait 3"></button>
-
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait4.jpg"><img src="images/Portraits/portrait4.jpg" alt="Portrait 4"></button>
-  <button class="gallery-item portrait-vertical   lightbox-trigger" data-image="images/Portraits/portrait5.jpg"><img src="images/Portraits/portrait5.jpg" alt="Portrait 5"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait6.jpg"><img src="images/Portraits/portrait6.jpg" alt="Portrait 6"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait7.jpg"><img src="images/Portraits/portrait7.jpg" alt="Portrait 7"></button>
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait8.jpg"><img src="images/Portraits/portrait8.jpg" alt="Portrait 8"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait9.jpg"><img src="images/Portraits/portrait9.jpg" alt="Portrait 9"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait10.jpg"><img src="images/Portraits/portrait10.jpg" alt="Portrait 10"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait11.jpg"><img src="images/Portraits/portrait11.jpg" alt="Portrait 11"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait12.jpg"><img src="images/Portraits/portrait12.jpg" alt="Portrait 12"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait13.jpg"><img src="images/Portraits/portrait13.jpg" alt="Portrait 13"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait14.jpg"><img src="images/Portraits/portrait14.jpg" alt="Portrait 14"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait15.jpg"><img src="images/Portraits/portrait15.jpg" alt="Portrait 15"></button>
-
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait16.jpg"><img src="images/Portraits/portrait16.jpg" alt="Portrait 16"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait17.jpg"><img src="images/Portraits/portrait17.jpg" alt="Portrait 17"></button>
-  <button class="gallery-item portrait-vertical lightbox-trigger" data-image="images/Portraits/portrait18.jpg"><img src="images/Portraits/portrait18.jpg" alt="Portrait 18"></button>
-
-  <button class="gallery-item portrait-horizontal lightbox-trigger" data-image="images/Portraits/portrait19.jpg"><img src="images/Portraits/portrait19.jpg" alt="Portrait 19"></button>
-  
-
-</div>
-      </div>
+             </div>
       </div>
 
       <div class="menu-screen" id="galleryFamily">
@@ -1403,19 +1374,16 @@ body.subpage #screenPortfolioCategories .back-row {
   </div>
 
 
-
-
-
-
-
-
-
-
+<script src="galleries.js"></script>
+<script src="gallery-render.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  
   const screenId = document.body.getAttribute("data-screen");
   const menuOverlay = document.getElementById("menuOverlay");
+
+  renderGallery("portraits", "portraitsGallery");
 
   document.querySelectorAll(".menu-screen").forEach(screen => {
     screen.classList.remove("active");
