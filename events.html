@@ -1367,21 +1367,28 @@ renderGallery("events", "eventsGallery");
     targetScreen.classList.add("active");
   }
 
+  history.replaceState({ screen: screenId }, "", window.location.pathname + "#" + screenId);
+
   if (menuOverlay) {
     menuOverlay.classList.add("active");
   }
   const backToPortfolioButtons = document.querySelectorAll(".back-to-portfolios");
 const backToMain = document.getElementById("backToMain");
 
-function showOnlyScreen(screenId) {
+function showOnlyScreen(screenId, addToHistory = true) {
   document.querySelectorAll(".menu-screen").forEach(screen => {
     screen.classList.remove("active");
   });
 
   const target = document.getElementById(screenId);
+
   if (target) {
     target.classList.add("active");
     window.scrollTo(0, 0);
+
+    if (addToHistory) {
+      history.pushState({ screen: screenId }, "", window.location.pathname + "#" + screenId);
+    }
   }
 }
 
@@ -1399,20 +1406,20 @@ if (backToMain) {
   const portfolioToggle = document.getElementById("portfolioToggle");
 const openGalleryButtons = document.querySelectorAll(".open-gallery");
 
-function showGallery(name) {
-  document.querySelectorAll(".menu-screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
+function showGallery(name, addToHistory = true) {
+  let screenId = "";
 
   if (name === "portraits") {
-    document.getElementById("galleryPortraits").classList.add("active");
+    screenId = "galleryPortraits";
   } else if (name === "family") {
-    document.getElementById("galleryFamily").classList.add("active");
+    screenId = "galleryFamily";
   } else if (name === "events") {
-    document.getElementById("galleryEvents").classList.add("active");
+    screenId = "galleryEvents";
   }
 
-  window.scrollTo(0, 0);
+  if (screenId) {
+    showOnlyScreen(screenId, addToHistory);
+  }
 }
 
 if (portfolioToggle) {
@@ -1426,6 +1433,14 @@ openGalleryButtons.forEach(button => {
     const galleryName = button.getAttribute("data-gallery");
     showGallery(galleryName);
   });
+});
+
+  window.addEventListener("popstate", (event) => {
+  const previousScreen = event.state && event.state.screen;
+
+  if (previousScreen) {
+    showOnlyScreen(previousScreen, false);
+  }
 });
 
   document.querySelectorAll(".lightbox-trigger").forEach(button => {
