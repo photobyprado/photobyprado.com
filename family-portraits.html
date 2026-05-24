@@ -888,22 +888,30 @@
   }
 }
   
-html body.subpage,
+html,
 body.subpage {
-  overflow: auto;
-  height: auto;
+  height: auto !important;
+  min-height: 100vh;
+  overflow-y: auto !important;
 }
 
 body.subpage .site-wrap {
-  display: none;
+  display: none !important;
 }
 
 body.subpage .menu-overlay {
-  position: relative;
-  display: block;
-  opacity: 1;
+  position: relative !important;
+  display: block !important;
+  opacity: 1 !important;
   min-height: 100vh;
   width: 100%;
+  overflow: visible !important;
+}
+
+body.subpage .menu-inner {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
 }
 
 body.subpage .menu-close,
@@ -916,7 +924,13 @@ body.subpage .menu-screen {
 }
 
 body.subpage .menu-screen.active {
-  display: block;
+  display: block !important;
+}
+
+body.subpage .about-screen,
+body.subpage .gallery-view,
+body.subpage .contact-screen {
+  padding-bottom: 90px;
 }
 
 .review-card {
@@ -1106,12 +1120,7 @@ body.subpage .menu-screen.active {
             </li>
             <li><a class="menu-link" href="/about.html">About</a></li>
             <li><a class="menu-link" href="/contact.html">Contact</a></li>
-            <li><a class="menu-link" href="/reviews.html">Reviews</a></li>
-          </ul>
-            </li>
-            <li><button type="button" class="menu-link" id="aboutToggle">About</button></li>
-            <li><button type="button" class="menu-link" id="contactToggle">Contact</button></li>
-          </ul>
+                </ul>
         </div>
       </div>
 
