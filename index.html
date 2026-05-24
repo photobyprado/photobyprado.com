@@ -136,7 +136,8 @@
   align-items: center;
 }
 
-.desktop-nav button {
+.desktop-nav button,
+.desktop-nav a {
   background: transparent;
   border: none;
   color: rgba(255,255,255,0.92);
@@ -148,7 +149,8 @@
   font-family: inherit;
 }
 
-.desktop-nav button:hover {
+.desktop-nav button:hover,
+.desktop-nav a:hover {
   color: var(--accent);
 }
 
@@ -892,9 +894,11 @@
   <div class="site-wrap">
     
     <div class="desktop-nav">
-  <button id="desktopPortfolioToggle">Portfolios</button>
-  <button id="desktopAboutToggle">About</button>
-  <button id="desktopContactToggle">Contact</button>
+  <a href="/portraits.html">Portraits</a>
+  <a href="/family-portraits.html">Family</a>
+  <a href="/events.html">Events</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
 </div>
     
     <div class="top-bar">
@@ -1024,18 +1028,29 @@
       <div class="menu-screen active" id="screenMain">
         <div class="menu-main-wrap">
           <ul class="menu-list">
-            <li class="portfolio-menu-item">
-              <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">Portfolios</button>
-              <ul class="portfolio-dropdown" id="portfolioDropdown">
-                <li><a href="#" class="portfolio-link" data-gallery="portraits">Portraits</a></li>
-                <li><a href="#" class="portfolio-link" data-gallery="family">Family Portraits</a></li>
-                <li><a href="#" class="portfolio-link" data-gallery="events">Events</a></li>
-              </ul>
-            </li>
-            <li><button type="button" class="menu-link" id="aboutToggle">About</button></li>
-            <li><button type="button" class="menu-link" id="contactToggle">Contact</button></li>
-          </ul>
-        </div>
+
+  <li class="portfolio-menu-item">
+    <button type="button" class="submenu-toggle portfolio-open" id="portfolioToggle">
+      Portfolios
+    </button>
+
+    <ul class="portfolio-dropdown" id="portfolioDropdown">
+      <li><a href="/portraits.html">Portraits</a></li>
+      <li><a href="/family-portraits.html">Family Portraits</a></li>
+      <li><a href="/events.html">Events</a></li>
+    </ul>
+  </li>
+
+  <li>
+    <a class="menu-link" href="/about.html">About</a>
+  </li>
+
+  <li>
+    <a class="menu-link" href="/contact.html">Contact</a>
+  </li>
+
+</ul>
+            </div>
       </div>
 
       <div class="menu-screen" id="screenPortfolioCategories">
@@ -1292,13 +1307,7 @@
     const portfolioLinks = document.querySelectorAll(".portfolio-link");
     let portfolioClickCount = 0;
 
-    const aboutToggle = document.getElementById("aboutToggle");
-    const contactToggle = document.getElementById("contactToggle");
-    
-    const desktopPortfolioToggle = document.getElementById("desktopPortfolioToggle");
-const desktopAboutToggle = document.getElementById("desktopAboutToggle");
-const desktopContactToggle = document.getElementById("desktopContactToggle");
-
+  
     const backToMain = document.getElementById("backToMain");
     const backFromAbout = document.getElementById("backFromAbout");
     const backFromContact = document.getElementById("backFromContact");
@@ -1426,27 +1435,7 @@ portfolioLinks.forEach(link => {
   });
 });
 
-    aboutToggle.addEventListener("click", () => {
-      showAboutScreen();
-    });
 
-    contactToggle.addEventListener("click", () => {
-      showContactScreen();
-    });
-desktopPortfolioToggle.addEventListener("click", () => {
-  menuOverlay.classList.add("active");
-  showPortfolioCategories();
-});
-
-desktopAboutToggle.addEventListener("click", () => {
-  menuOverlay.classList.add("active");
-  showAboutScreen();
-});
-
-desktopContactToggle.addEventListener("click", () => {
-  menuOverlay.classList.add("active");
-  showContactScreen();
-});
     backToMain.addEventListener("click", () => {
       showMainMenu();
     });
