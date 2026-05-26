@@ -43,7 +43,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://www.google.com/recaptcha/api.js?render=6Ld9PcMsAAAAADn65qddEMW0nbhG3a5QAcyHXIt-"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       
   <style>
     :root {
@@ -1245,7 +1245,7 @@
           Daniel Prado
         </h2>
 
-        <form class="contact-form" action="https://hook.us2.make.com/eqoi7o1sazv28fbh9pqwx2fyygupgdn5" method="POST">
+        <form class="contact-form" action="https://photobyprado-contact-form.photobyprado.workers.dev" method="POST">
           <input type="hidden" name="_replyto" value="daniel@photobyprado.com">
 
           <div class="contact-row">
@@ -1268,7 +1268,7 @@
 
           <textarea name="message" placeholder="Your message here" required></textarea>
 
-          <button class="g-recaptcha"
+          <button type="submit" class="g-recaptcha"
             data-sitekey="6Ld9PcMsAAAAADn65qddEMW0nbhG3a5QAcyHXIt-"
             data-callback="onSubmit"
             data-action="submit">
@@ -1549,6 +1549,11 @@ function onSubmit(token) {
   const form = document.querySelector(".contact-form");
   if (!form) return;
 
+  const existingToken = form.querySelector('input[name="g-recaptcha-response"]');
+  if (existingToken) {
+    existingToken.remove();
+  }
+
   const input = document.createElement("input");
   input.type = "hidden";
   input.name = "g-recaptcha-response";
@@ -1562,12 +1567,7 @@ function onSubmit(token) {
     btn.disabled = true;
   }
 
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form)
-  }).then(() => {
-    window.location.href = "/";
-  });
+  form.submit();
 }
 </script>
 </body>
